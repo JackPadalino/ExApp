@@ -20,12 +20,13 @@ body{
   margin-bottom:20px;
 }
 
-/*
-.projects-div{
-}
-*/
-
 .project-card{
   margin-top:10px;
+  margin-bottom:10px;
+  box-shadow: 5px 5px 7px grey;
+}
+
+.project-card-student{
+  border-bottom: 1px solid grey;
   margin-bottom:10px;
 }
