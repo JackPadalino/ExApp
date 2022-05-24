@@ -1,0 +1,30 @@
+/*
+body{
+  background-color: rgb(159, 243, 208);
+}
+*/
+.main-navigation-bar {
+  background-color: #77DD77;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.page-content{
+  margin-left:20px;
+  margin-right:20px;
+}
+
+.page-title{
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+/*
+.projects-div{
+}
+*/
+
+.project-card{
+  margin-top:10px;
+  margin-bottom:10px;
+}
