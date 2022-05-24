@@ -7,10 +7,10 @@
     {% for project in studentprojects %}
         <div class="card project-card" style="width: 18rem;">
             <!--<img src="..." class="card-img-top" alt="...">-->
-            <div class="card-body">
-                <h5 class="card-title">{{ project.project }}</h5>
-                <h8 class="card-title">{{ project.student }}</h8>
-                <p class="card-text">{{ project.description }}</p>
+            <div class="card-body project-card-body">
+                <h5 class="card-title project-card-title">{{ project.title }}</h5>
+                <h8 class="card-title project-card-student">{{ project.student }}</h8>
+                <p class="card-text project-card-blurb">{{ project.blurb }}</p>
             </div>
         </div>
     {% endfor %}

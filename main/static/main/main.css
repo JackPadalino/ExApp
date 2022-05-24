@@ -1,8 +1,9 @@
-/*
+
 body{
-  background-color: rgb(159, 243, 208);
+  /*background-color: rgb(159, 243, 208);*/
+  background-color:white;
 }
-*/
+
 .main-navigation-bar {
   background-color: #77DD77;
   padding-left:10px;
