@@ -12,6 +12,7 @@ def login(request):
 def register(request):
     form = UserCreationForm()
     context = {
+        'title':'Register',
         'form':form
     }
     return render(request,'users/register.html',context)
