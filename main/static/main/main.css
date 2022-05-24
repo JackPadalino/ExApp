@@ -26,7 +26,8 @@ body{
   box-shadow: 5px 5px 7px grey;
 }
 
-.project-card-student{
-  border-bottom: 1px solid grey;
-  margin-bottom:10px;
+.project-card-blurb{
+  margin-top:10px;
+  padding-top:10px;
+  border-top: 1px solid grey;
 }

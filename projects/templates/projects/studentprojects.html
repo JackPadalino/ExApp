@@ -10,7 +10,9 @@
             <div class="card-body project-card-body">
                 <h5 class="card-title project-card-title">{{ project.title }}</h5>
                 <h8 class="card-title project-card-student">{{ project.student }}</h8>
-                <p class="card-text project-card-blurb">{{ project.blurb }}</p>
+                <div class='project-card-blurb'>
+                    <p class="card-text project-card-text">{{ project.blurb }}</p>
+                </div>
             </div>
         </div>
     {% endfor %}
