@@ -10,7 +10,12 @@ def login(request):
     return render(request,'users/login.html',context)
 
 def register(request):
-    form = UserCreationForm()
+    if request.metho == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+    else:
+        form = UserCreationForm()
     context = {
         'title':'Register',
         'form':form
