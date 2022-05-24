@@ -26,8 +26,12 @@ body{
   box-shadow: 5px 5px 7px grey;
 }
 
+.project-card-title{
+  color: #77DD77;
+}
+
 .project-card-blurb{
-  margin-top:10px;
+  margin-top:5px;
   padding-top:10px;
   border-top: 1px solid grey;
 }
