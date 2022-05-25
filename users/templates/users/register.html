@@ -4,7 +4,7 @@
 <div class='page-title'>
     <h1>This is the registration page!</h1>
 </div>
-<div class='register-form'>
+<div class='register-login-form'>
     <form method='POST'>
         {% csrf_token %}
         <fieldset class='form-group'>
@@ -18,7 +18,7 @@
     </form>
     <br>
     <div>
-        <small class='text-muted'>Already have an account? <a class='ml-2' href='#'>Sign in</a></small>
+        <small class='text-muted'>Already have an account? <a class='ml-2' href="{% url 'users-login' %}">Sign in</a></small>
     </div>
 </div>
 {% endblock content %}
