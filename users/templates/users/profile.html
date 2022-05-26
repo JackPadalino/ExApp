@@ -1,8 +1,6 @@
-{% extends 'main/base.html' %}
+{% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class='page-title'>
-    <h1>This is the profile page!</h1>
-</div>
 <h1>{{ user.username }}</h1>
+<p>{{ user.email }}</p>
 {% endblock content %}
