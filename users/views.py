@@ -25,7 +25,7 @@ def register(request):
             if email_domain.group() == EMAIL_DOMAIN:
                 form.save()
                 username = form.cleaned_data.get('username')
-                messages.success(request,f'Account created for {username}!')
+                messages.success(request,f'Account created for {username}! You are now able to sign in.')
                 return redirect('users-login')
             else:
                 messages.error(request,f'Sorry. You are not authorized to register.')
