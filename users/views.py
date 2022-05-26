@@ -5,6 +5,9 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 import re
+import os
+
+EMAIL_DOMAIN = os.environ.get('EMAIL_DOMAIN')
 
 # Create your views here.
 def login(request):
@@ -19,7 +22,7 @@ def register(request):
         if form.is_valid():
             email = form.cleaned_data.get('email')
             email_domain = re.search("@[\w.]+", email)
-            if email_domain.group() == '@amsbronx.org':
+            if email_domain.group() == EMAIL_DOMAIN:
                 form.save()
                 username = form.cleaned_data.get('username')
                 messages.success(request,f'Account created for {username}!')
