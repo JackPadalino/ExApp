@@ -1,3 +1,4 @@
+from dataclasses import field
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -19,3 +20,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+
+#TRY THIS
+#https://stackoverflow.com/questions/57918725/how-to-extend-django-usercreationform-model-to-include-phone-number-field
