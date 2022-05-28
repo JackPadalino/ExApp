@@ -2,23 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class='page-title'>
-    <h1>This is the registration page!</h1>
+    <h1>Select your period page!</h1>
 </div>
 <div class='register-login-form'>
     <form method='POST'>
         <fieldset class='form-group'>
-            <legend class='border-bottom mb-4'>Join Today</legend>
+            <legend class='border-bottom mb-4'>What period are you in?</legend>
             {% csrf_token %}
             {{ form|crispy }}
         </fieldset>
         <br>
         <div class='form-group'>
-            <button class='btn btn-outline-info' type='submit'>Continue</button>
+            <button class='btn btn-outline-info' type='submit'>Sign up</button>
         </div>
     </form>
-    <br>
-    <div>
-        <small class='text-muted'>Already have an account? <a class='ml-2' href="{% url 'users-login' %}">Sign in</a></small>
-    </div>
 </div>
 {% endblock content %}

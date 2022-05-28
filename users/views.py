@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm,UserProfileForm
+from .forms import UserRegisterForm#,UserPeriodForm
 from django.contrib.auth.decorators import login_required
 import re
 import os
@@ -37,6 +37,22 @@ def register(request):
     }
     return render(request,'users/register.html',context)
 
+'''
+def period(request):
+    if request.method == "POST":
+        form = UserPeriodForm(request.POST,request.FILES,instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request,f'Account created! You are now able to sign in.')
+            return redirect('users-login')
+    else:
+        form = UserPeriodForm(instance=request.user.profile)  
+    context = {
+        'title':'Register',
+        'form':form
+    }
+    return render(request,'users/period.html',context)
+'''
 
 '''
 def register(request):
