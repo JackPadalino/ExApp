@@ -17,6 +17,10 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
 
+class Comment(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    post = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='comments')
+    content = models.TextField()
 
-#TRY THIS
-#https://stackoverflow.com/questions/57918725/how-to-extend-django-usercreationform-model-to-include-phone-number-field
+    def __str__(self):
+        return f'{self.content} - {self.author}'
