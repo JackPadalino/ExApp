@@ -9,16 +9,16 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
     {% if title %}
-        <title>AMS ExAP - {{ title }}</title>
+        <title>AMS EXAP - {{ title }}</title>
     {% else %}
-        <title>AMS ExAP</title>
+        <title>AMS EXAP</title>
     {% endif %}
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light main-navigation-bar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'main-home' %}"><b>AMS ExAP</b></a>
+            <a class="navbar-brand" href="{% url 'main-home' %}"><b>AMS EXAP</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
             </div>
             <div class='navbar-nav'>
                 {% if user.is_authenticated %}
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-myproject' %}">My ExAP</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'users-myproject' %}">My EXAP</a>
                     <a class="nav-link active" aria-current="page" href="{% url 'users-profile' %}">My Profile</a>
                     <a class="nav-link active" aria-current="page" href="{% url 'users-logout' %}">Logout</a>
                 {% else %}
