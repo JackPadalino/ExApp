@@ -8,8 +8,8 @@ class Profile(models.Model):
     period = models.IntegerField(default=1)
     #image(s) = need to add an image field here for single or multiple project photos
     project_title = models.CharField(max_length=50,default='My EXAP project')
-    project_blurb = models.CharField(max_length=100,default='Check out my project!')
-    project_description = models.TextField(default="I don't have a project description yet, but trust me it will be awesome!")
+    project_blurb = models.CharField(max_length=100,default='Check out my project')
+    project_description = models.TextField(default="I haven't written my project description yet, but trust me it will be awesome!")
 
     def __str__(self):
         return f'{self.user.username}'
@@ -18,9 +18,9 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
 class Comment(models.Model):
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='comments')
     author = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='comments')
     content = models.TextField()
 
     def __str__(self):
-        return f'{self.content} - {self.author}'
+        return f"{self.content} - {self.author.first_name} {self.author.last_name} on {self.profile.user.first_name} {self.profile.user.last_name}'s project"
