@@ -41,21 +41,33 @@ def register(request):
 def profile(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST,instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
+        if u_form.is_valid():
             u_form.save()
-            p_form.save()
-            messages.success(request,f'Your account has been updated.')
+            messages.success(request,f'Your profile has been updated.')
             return redirect('users-profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
     context = {
         'title':'My profile',
         'u_form':u_form,
-        'p_form':p_form
     }
     return render(request,'users/profile.html',context)
+
+@login_required
+def myproject(request):
+    if request.method == "POST":
+        p_form = ProfileUpdateForm(request.POST,instance=request.user.profile)
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(request,f'Your project has been updated.')
+            return redirect('users-myproject')
+    else:
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    context = {
+        'title':'My ExAP',
+        'p_form':p_form
+    }
+    return render(request,'users/myproject.html',context)
 
 '''
 def period(request):
