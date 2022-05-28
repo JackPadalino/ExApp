@@ -1,13 +1,26 @@
+from django.urls.base import reverse_lazy # this import standard with django
 from django.http import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
+from django.contrib.auth.models import User
+from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from .models import Comment,Profile
 import re
 import os
 
 EMAIL_DOMAIN = os.environ.get('EMAIL_DOMAIN')
+
+# Create your views here.
+def displayprojects(request):
+    context = {
+        'title':'Projects',
+        'users':User.objects.all()
+    }
+    return render(request,'users/studentprojects.html',context)
 
 # Create your views here.
 def login(request):
@@ -68,6 +81,32 @@ def myproject(request):
         'p_form':p_form
     }
     return render(request,'users/myproject.html',context)
+
+'''
+class CommentCreateView(LoginRequiredMixin,CreateView):
+    model = Comment
+    template_name = 'users/addcomment.html'
+    form_class=CommentForm
+
+    def form_valid(self,form):
+        form.instance.post_id = self.kwargs['pk']
+        form.instance.author_id = self.request.user.id
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('project-details', kwargs={'pk': self.kwargs['pk']})
+'''
+
+def ProjectDetailView(request,user_pk):
+    user = User.objects.get(pk=user_pk)
+    #comments = Comment.objects.filter(profile=profile)
+
+    context = {
+        'user': user,
+        #'comments':comments
+    }
+
+    return render(request, 'users/projectdetails.html', context)
 
 '''
 def period(request):
