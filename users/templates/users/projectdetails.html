@@ -1,11 +1,16 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<article class="media content-section">
-    <div class="media-body">
-        <h1 >{{ user.profile.project_title }}</h1>
-        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <p>{{ user.profile.project_description }}</p>
-    </div>
-</article>
+    <article class="media content-section">
+        <div class="media-body">
+            <h1 >{{ user.profile.project_title }}</h1>
+            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+            <p>{{ user.profile.project_description }}</p>
+        </div>
+    </article>
+    {% for comment in user.profile.comments.all %}
+        <p>{{ comment.content }} - {{ comment.author.first_name }} {{ comment.author.last_name }}</p>
+        <br>
+    {% endfor %}
+    <a href="{% url 'add-comment' user.id %}">Add comment</a>
 {% endblock %}
