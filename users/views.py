@@ -82,21 +82,6 @@ def myproject(request):
     }
     return render(request,'users/myproject.html',context)
 
-'''
-class CommentCreateView(LoginRequiredMixin,CreateView):
-    model = Comment
-    template_name = 'users/addcomment.html'
-    form_class=CommentForm
-
-    def form_valid(self,form):
-        form.instance.post_id = self.kwargs['pk']
-        form.instance.author_id = self.request.user.id
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('project-details', kwargs={'pk': self.kwargs['pk']})
-'''
-
 def ProjectDetailView(request,user_pk):
     user = User.objects.get(pk=user_pk)
     #comments = Comment.objects.filter(profile=profile)
@@ -107,46 +92,3 @@ def ProjectDetailView(request,user_pk):
     }
 
     return render(request, 'users/projectdetails.html', context)
-
-'''
-def period(request):
-    if request.method == "POST":
-        form = UserPeriodForm(request.POST,request.FILES,instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request,f'Account created! You are now able to sign in.')
-            return redirect('users-login')
-    else:
-        form = UserPeriodForm(instance=request.user.profile)  
-    context = {
-        'title':'Register',
-        'form':form
-    }
-    return render(request,'users/period.html',context)
-'''
-
-'''
-def register(request):
-    if request.method=='POST' and request.user is None:
-        u_form = UserRegisterForm(request.POST, instance=request.user)
-        p_form = UserProfileForm(request.POST,request.FILES,instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
-            email = u_form.cleaned_data.get('email')
-            email_domain = re.search("@[\w.]+", email)
-            if email_domain.group() == EMAIL_DOMAIN:
-                u_form.save()
-                p_form.save()
-                username = u_form.cleaned_data.get('username')
-                messages.success(request,f'Account created for {username}! You are now able to sign in.')
-                return redirect('users-login')
-            else:
-                messages.error(request,f'Sorry. You are not authorized to register.')
-    else:       
-        u_form = UserRegisterForm(instance=request.user)
-        p_form = UserProfileForm(instance=request.user.profile)     
-    context = {
-        'u_form':u_form,
-        'p_form':p_form
-    }
-    return render(request,'users/profile.html',context)
-'''
