@@ -34,7 +34,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main',
-    'projects',
     'users',
     'crispy_forms',
     'django.contrib.admin',
