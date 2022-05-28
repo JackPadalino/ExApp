@@ -14,21 +14,7 @@ import os
 
 EMAIL_DOMAIN = os.environ.get('EMAIL_DOMAIN')
 
-# Create your views here.
-def displayprojects(request):
-    context = {
-        'title':'Projects',
-        'users':User.objects.all()
-    }
-    return render(request,'users/studentprojects.html',context)
-
-# Create your views here.
-def login(request):
-    context = {
-        'title':'Login',
-    }
-    return render(request,'users/login.html',context)
-
+# register view
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
@@ -50,6 +36,21 @@ def register(request):
     }
     return render(request,'users/register.html',context)
 
+# login view
+def login(request):
+    context = {
+        'title':'Login',
+    }
+    return render(request,'users/login.html',context)
+
+def displayprojects(request):
+    context = {
+        'title':'Projects',
+        'users':User.objects.all()
+    }
+    return render(request,'users/studentprojects.html',context)
+
+# profile details/update view
 @login_required
 def profile(request):
     if request.method == "POST":
@@ -66,6 +67,7 @@ def profile(request):
     }
     return render(request,'users/profile.html',context)
 
+# my project details/update view
 @login_required
 def myproject(request):
     if request.method == "POST":
@@ -82,6 +84,7 @@ def myproject(request):
     }
     return render(request,'users/myproject.html',context)
 
+# other students' project details view
 def ProjectDetailView(request,user_pk):
     user = User.objects.get(pk=user_pk)
     #comments = Comment.objects.filter(profile=profile)
@@ -92,3 +95,19 @@ def ProjectDetailView(request,user_pk):
     }
 
     return render(request, 'users/projectdetails.html', context)
+
+'''
+# add comment view
+class CommentCreateView(LoginRequiredMixin,CreateView):
+    model = Comment
+    template_name = 'users/addcomment.html'
+    form_class=CommentForm
+
+    def form_valid(self,form):
+        form.instance.post_id = self.kwargs['pk']
+        form.instance.author_id = self.request.user.id
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('project-details', kwargs={'pk': self.kwargs['pk']})
+'''
