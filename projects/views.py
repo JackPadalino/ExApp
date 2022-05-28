@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Project
+from users.models import Profile
 
 studentprojects = [
     {
@@ -24,6 +25,6 @@ studentprojects = [
 def displayprojects(request):
     context = {
         'title':'Projects',
-        'studentprojects':Project.objects.all()
+        'studentprofiles':Profile.objects.all()
     }
     return render(request,'projects/studentprojects.html',context)

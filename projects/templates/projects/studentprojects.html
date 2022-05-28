@@ -4,14 +4,14 @@
     <h1>This is the projects page!</h1>
 </div>
 <div class='projects-div'>
-    {% for project in studentprojects %}
+    {% for profile in studentprofiles %}
         <div class="card project-card" style="width: 18rem;">
             <!--<img src="..." class="card-img-top" alt="...">-->
             <div class="card-body project-card-body">
-                <h5 class="card-title project-card-title">{{ project.title }}</h5>
-                <h8 class="card-title project-card-student">{{ project.student }}</h8>
+                <h5 class="card-title project-card-title">{{ profile.project_title }}</h5>
+                <h8 class="card-title project-card-student">{{ profile.user.username }}</h8>
                 <div class='project-card-blurb'>
-                    <p class="card-text project-card-text">{{ project.blurb }}</p>
+                    <p class="card-text project-card-text">{{ profile.project_blurb }}</p>
                 </div>
             </div>
         </div>
