@@ -11,5 +11,5 @@
     {% for comment in user.profile.comments.all %}
         <p>{{ comment.content }} - {{ comment.author.first_name }} {{ comment.author.last_name }}</p>
     {% endfor %}
-    <a href="{% url 'add-comment' user.id %}">Add comment</a>
+    <!--<a href="{% url 'add-comment' user.id %}">Add comment</a>-->
 {% endblock %}
