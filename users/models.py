@@ -18,7 +18,7 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
 class Comment(models.Model):
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='comments')
+    profile = models.ForeignKey(Profile,related_name='comments',on_delete=models.CASCADE)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     content = models.TextField()
 
