@@ -10,7 +10,6 @@
     </article>
     {% for comment in user.profile.comments.all %}
         <p>{{ comment.content }} - {{ comment.author.first_name }} {{ comment.author.last_name }}</p>
-        <br>
     {% endfor %}
     <a href="{% url 'add-comment' user.id %}">Add comment</a>
 {% endblock %}
