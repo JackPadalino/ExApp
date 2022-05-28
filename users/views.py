@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView,UpdateView,Del
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .models import Comment,Profile
+from .models import Profile,Comment
 import re
 import os
 
@@ -77,14 +77,16 @@ def myproject(request):
     else:
         p_form = ProfileUpdateForm(instance=request.user.profile)
     context = {
-        'title':'My ExAP',
+        'title':'My EXAP',
         'p_form':p_form
     }
     return render(request,'users/myproject.html',context)
 
 # other students' project details view
-def ProjectDetailView(request,user_pk):
-    user = User.objects.get(pk=user_pk)
+@login_required
+def ProjectDetailView(request,user_id):
+    user = User.objects.get(id=user_id)
+
     #comments = Comment.objects.filter(profile=profile)
 
     context = {
@@ -94,11 +96,25 @@ def ProjectDetailView(request,user_pk):
 
     return render(request, 'users/projectdetails.html', context)
 
+class CommentCreateView(LoginRequiredMixin,CreateView):
+    model = Comment
+    template_name = 'users/addcomment.html'
+    form_class=CommentForm
+    
+    def form_valid(self,form):
+        form.instance.profile_id = self.kwargs['id']
+        form.instance.author_id = self.request.user.id
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('project-details', kwargs={'id': self.kwargs['id']})
+
+
 '''
 # add comment view
 class CommentCreateView(LoginRequiredMixin,CreateView):
     model = Comment
-    template_name = 'users/addcomment.html'
+    template_name = 'blog/add_comment.html'
     form_class=CommentForm
 
     def form_valid(self,form):
@@ -107,5 +123,5 @@ class CommentCreateView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('project-details', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy('post-details', kwargs={'pk': self.kwargs['pk']})
 '''
