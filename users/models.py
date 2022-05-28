@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Profile(models.Model):
+    '''
     periods = [
-        ('',''),
+        ('-','-'),
         ('1','1'),
         ('2','2'),
         ('3','3'),
@@ -13,8 +14,9 @@ class Profile(models.Model):
         ('6','6'),
         ('7','7'),
     ]
+    '''
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    period = models.CharField(max_length=1,choices=periods,default='')
+    period = models.IntegerField(default=1)
 
     #project_pics = 
 

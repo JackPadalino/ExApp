@@ -6,8 +6,7 @@ from .models import Profile
 # Register your models here.
 #admin.site.register(Profile)
 
-# Define an inline admin descriptor for Employee model
-# which acts a bit like a singleton
+# These lines add the profile field to the Django admin page
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False

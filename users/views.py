@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm,UserProfileForm
+from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 import re
 import os
@@ -36,6 +36,30 @@ def register(request):
         'form':form
     }
     return render(request,'users/register.html',context)
+
+'''
+def register(request):
+    if request.method=='POST':
+        u_form = UserRegisterForm(request.POST)
+        p_form = UserProfileForm(request.POST)
+        if u_form.is_valid() and p_form.is_valid():
+            email = u_form.cleaned_data.get('email')
+            email_domain = re.search("@[\w.]+", email)
+            if email_domain.group() == EMAIL_DOMAIN:
+                u_form.save()
+                p_form.save()
+                username = u_form.cleaned_data.get('username')
+                messages.success(request,f'Account created for {username}! You are now able to sign in.')
+                return redirect('users-login')
+    else:       
+        u_form = UserRegisterForm(instance=request.user)
+        p_form = UserRegisterForm(instance=request.user.profile)     
+    context = {
+        'u_form':u_form,
+        'p_form':p_form
+    }
+    return render(request,'users/register.html',context)
+'''
 
 @login_required
 def profile(request):
