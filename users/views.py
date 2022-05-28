@@ -57,7 +57,6 @@ def profile(request):
         u_form = UserUpdateForm(request.POST,instance=request.user)
         if u_form.is_valid():
             u_form.save()
-            messages.success(request,f'Your profile has been updated.')
             return redirect('users-profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -74,7 +73,6 @@ def myproject(request):
         p_form = ProfileUpdateForm(request.POST,instance=request.user.profile)
         if p_form.is_valid():
             p_form.save()
-            messages.success(request,f'Your project has been updated.')
             return redirect('users-myproject')
     else:
         p_form = ProfileUpdateForm(instance=request.user.profile)
