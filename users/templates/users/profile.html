@@ -1,6 +1,25 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>{{ user.username }}</h1>
-<p>{{ user.email }}</p>
+<div class='register-login-profile-form'>
+    <form method='POST'>
+        <fieldset class='form-group'>
+            <legend class='border-bottom mb-4'>Update profile</legend>
+            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+            <h2>{{ user.username }}</h2>
+            {% csrf_token %}
+            <br>
+            <legend class='border-bottom mb-4'>My project</legend>
+            {{ p_form|crispy }}
+            <br>
+            <legend class='border-bottom mb-4'>Personal information</legend>
+            {{ u_form|crispy }}
+            
+        </fieldset>
+        <br>
+        <div class='form-group'>
+            <button class='btn btn-outline-info' type='submit'>Update</button>
+        </div>
+    </form>
+</div>
 {% endblock content %}
