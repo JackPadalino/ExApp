@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 # Register your models here.
-admin.site.register(Profile)
+#admin.site.register(Profile)
 
-'''
+
 # These lines add the profile field to the Django admin
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -20,4 +20,3 @@ class UserAdmin(BaseUserAdmin):
 # Re-register UserAdmin
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-'''
