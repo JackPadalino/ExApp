@@ -49,6 +49,38 @@ class ProjectListView(ListView):
     template_name = 'users/studentprojects.html'
     context_object_name = 'projects'
 
+# list projects view
+class MyProjectsListView(ListView):
+    model = Project
+    template_name = 'users/myprojects.html'
+    context_object_name = 'projects'
+
+    def get_queryset(self):
+        user = get_object_or_404(User,id=self.kwargs.get('user_id'))
+        projects = Project.objects.filter(student=user)
+        return projects
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class ProjectDetailView(DetailView):
     model = Project
 
