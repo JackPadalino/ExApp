@@ -44,10 +44,31 @@ def login(request):
     return render(request,'users/login.html',context)
 
 # list projects view
-class ProjectListView(ListView):
+class AllProjectListView(ListView):
     model = Project
-    template_name = 'users/studentprojects.html'
+    template_name = 'users/allstudentprojects.html'
     context_object_name = 'projects'
+
+# list projects view
+class FirstPeriodProjectListView(ListView):
+    model = Project
+    template_name = 'users/firstperiodprojects.html'
+    context_object_name = 'projects'
+    queryset = Project.objects.filter(period=1)
+
+# list projects view
+class SixthPeriodProjectListView(ListView):
+    model = Project
+    template_name = 'users/sixthperiodprojects.html'
+    context_object_name = 'projects'
+    queryset = Project.objects.filter(period=6)
+
+# list projects view
+class SeventhPeriodProjectListView(ListView):
+    model = Project
+    template_name = 'users/seventhperiodprojects.html'
+    context_object_name = 'projects'
+    queryset = Project.objects.filter(period=7)
 
 # list projects view
 class MyProjectsListView(ListView):

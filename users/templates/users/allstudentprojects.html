@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class='page-title'>
+    <h1>All EXAP Projects</h1>
+</div>
+{% if user.is_authenticated %}
+    <div class='projects-div'>
+        {% for project in projects %}
+            <div class="card project-card" style="width: 18rem;">
+                <!--<img src="..." class="card-img-top" alt="...">-->
+                <div class="card-body project-card-body">
+                    <h5><a class="article-title" href="{% url 'project-details' project.pk %}">{{ project.title }}</a></h5>
+                    <h8 class="card-title project-card-student">{{ project.student.username }}</h8>
+                    <div class='project-card-blurb'>
+                        <p class="card-text project-card-text">{{ project.blurb }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock content %}

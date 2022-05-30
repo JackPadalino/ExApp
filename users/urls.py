@@ -3,12 +3,27 @@ from django.urls import path
 #from .views import ProjectDetailView,CommentCreateView
 #from .views import ProjectCreateView,ProjectUpdateView,ProjectDeleteView,ProjectDetailView
 from users import views
-from .views import ProjectListView,ProjectCreateView,ProjectDetailView,ProjectUpdateView,ProjectDeleteView,MyProjectsListView
+from .views import (
+    AllProjectListView,
+    FirstPeriodProjectListView,
+    SixthPeriodProjectListView,
+    SeventhPeriodProjectListView,
+    ProjectCreateView,
+    ProjectDetailView,
+    ProjectUpdateView,
+    ProjectDeleteView,
+    MyProjectsListView
+)
 
 urlpatterns = [
     path('profile/',views.profile,name='users-profile'),
     path('newproject/',ProjectCreateView.as_view(),name='create-project'),
-    path('projects/',ProjectListView.as_view(),name='users-studentprojects'),
+    path('projects/',AllProjectListView.as_view(),name='users-studentprojects'),
+
+    path('firstperiodprojects/',FirstPeriodProjectListView.as_view(),name='users-firstperiodprojects'),
+    path('sixthperiodprojects/',SixthPeriodProjectListView.as_view(),name='users-sixthperiodprojects'),
+    path('seventhperiodprojects/',SeventhPeriodProjectListView.as_view(),name='users-seventhperiodprojects'),
+
     path('myprojects/<int:user_id>/',MyProjectsListView.as_view(),name='users-myprojects'),
     path('projects/<int:pk>/',ProjectDetailView.as_view(),name='project-details'),
     path('projects/<int:pk>/update/',ProjectUpdateView.as_view(),name='update-project'),
