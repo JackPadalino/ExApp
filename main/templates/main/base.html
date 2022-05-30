@@ -36,8 +36,9 @@
             </div>
             <div class='navbar-nav'>
                 {% if user.is_authenticated %}
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-myproject' %}">My EXAP</a>
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-profile' %}">My Profile</a>
+                    <!--<a class="nav-link active" aria-current="page" href= url 'users-project-details' >My EXAP</a>-->
+                    <a class="nav-link active" aria-current="page" href="{% url 'create-project' %}">New Project</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'users-profile' %}">{{ user.username }}</a>
                     <a class="nav-link active" aria-current="page" href="{% url 'users-logout' %}">Logout</a>
                 {% else %}
                     <a class="nav-link active" aria-current="page" href="{% url 'users-login' %}">Login</a>

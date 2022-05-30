@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from .models import Profile,Comment
+from .models import Project#,Comment
 
 # Register your models here.
-admin.site.register(Profile)
-admin.site.register(Comment)
+admin.site.register(Project)
+#admin.site.register(Comment)
 
 '''
 # These lines add the profile field to the Django admin

@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <div class='register-login-profile-form'>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Project</legend>
+                <h2>Are you sure you want to delete this project?</h2>
+            </fieldset>
+            <br>
+            <div class='form-group'>
+                <button class="btn btn-outline-danger" type='submit'>Yes, Delete</button>
+                <a class="btn btn-outline-dark" href="{% url 'users-project-details' object.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

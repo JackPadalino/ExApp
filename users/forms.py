@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Comment
+from .models import Profile#,Comment
 
 '''
 class UserRegisterForm(forms.ModelForm):
@@ -55,7 +55,8 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['period']
+        #fields = ['period']
+        fields = []
 
 # this will create a form that will allow a user to update their profile information
 # a model form creates a form that is able to interact with a specific model
@@ -82,9 +83,9 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         #fields = ['image']
-        fields = ['project_title','project_blurb','project_description','period']
+        fields = []
 
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['content']
+#class CommentForm(forms.ModelForm):
+#    class Meta:
+#        model = Comment
+#        fields = ['content']

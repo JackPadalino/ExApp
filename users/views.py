@@ -5,10 +5,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm#,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Comment
+from .models import Project#,Comment
 import re
 import os
 
@@ -43,12 +43,47 @@ def login(request):
     }
     return render(request,'users/login.html',context)
 
-def displayprojects(request):
-    context = {
-        'title':'Projects',
-        'users':User.objects.all()
-    }
-    return render(request,'users/studentprojects.html',context)
+# list projects view
+class ProjectListView(ListView):
+    model = Project
+    template_name = 'users/studentprojects.html'
+    context_object_name = 'projects'
+
+class ProjectDetailView(DetailView):
+    model = Project
+
+class ProjectCreateView(LoginRequiredMixin,CreateView):
+    model = Project
+    fields = ['period','title','blurb','description']
+    
+    def form_valid(self,form):
+        form.instance.student = self.request.user
+        return super().form_valid(form)
+
+class ProjectUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+    model = Project
+    fields = ['period','title','blurb','description']
+
+    def form_valid(self,form):
+        form.instance.student = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        project = self.get_object()
+        if self.request.user == project.student:
+            return True
+        return False
+
+class ProjectDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = Project
+    success_url = reverse_lazy('users-studentprojects')
+
+    def test_func(self):
+        project = self.get_object()
+        if self.request.user == project.student:
+            return True
+        return False
+
 
 # profile details/update view
 @login_required
@@ -66,40 +101,52 @@ def profile(request):
     }
     return render(request,'users/profile.html',context)
 
-# my project details/update view
-@login_required
-def myproject(request):
-    if request.method == "POST":
-        p_form = ProfileUpdateForm(request.POST,instance=request.user.profile)
-        if p_form.is_valid():
-            p_form.save()
-            return redirect('users-myproject')
-    else:
-        p_form = ProfileUpdateForm(instance=request.user.profile)
-    context = {
-        'title':'My EXAP',
-        'p_form':p_form
-    }
-    return render(request,'users/myproject.html',context)
-
+'''
 # other students' project details view
 @login_required
-def ProjectDetailView(request,user_id):
-    user = User.objects.get(id=user_id)
+def ProjectDetailView(request,project_id):
+    project = Project.objects.get(id=project_id)
 
     #comments = Comment.objects.filter(profile=profile)
 
     context = {
-        'user': user,
+        'project': project,
         #'comments':comments
     }
 
     return render(request, 'users/projectdetails.html', context)
+'''
 
+'''
+@login_required
+def CommentCreateView(request,profile_id):
+    comment = None
+    form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.profile = Profile.objects.get(id=profile_id)
+            comment.author = User.objects.get(id=request.user.id)
+            comment.save()
+            return redirect('users-studentprojects')
+
+        else:
+            form = CommentForm()
+    context = {
+        'title':'Add comment',
+        'form':form
+    }
+    return render(request,'users/addcomment.html',context)
+'''
+
+
+'''
 class CommentCreateView(LoginRequiredMixin,CreateView):
     model = Comment
     template_name = 'users/addcomment.html'
     form_class=CommentForm
+    
     
     def form_valid(self,form):
         form.instance.profile_id = self.kwargs['id']
@@ -108,7 +155,7 @@ class CommentCreateView(LoginRequiredMixin,CreateView):
 
     def get_success_url(self):
         return reverse_lazy('project-details', kwargs={'id': self.kwargs['id']})
-
+'''
 
 '''
 # add comment view
