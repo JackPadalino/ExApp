@@ -119,23 +119,27 @@ class MyProjectsListView(LoginRequiredMixin,ListView):
 
 @login_required
 def ProjectDetailView(request,pk):
-    #project = Project.objects.get(id=pk)
-    project = get_object_or_404(Project,id=pk)
+    project = Project.objects.get(id=pk)
+    #project = get_object_or_404(Project,id=pk)
     comments = Comment.objects.filter(project=project)
+    comment_form = CommentForm(request.POST)
+    #like_form = 
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.project = project
-            comment.author = request.user
-            comment.save()
-            return redirect('project-details',pk=project.pk)
+        if 'commentbutton' in request.POST:
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.project = project
+                comment.author = request.user
+                comment.save()
+                return redirect('project-details',pk=project.pk)
+        elif 'likebutton' in request.POST:
+            pass
     else:
-        form = CommentForm()
+        comment_form = CommentForm()
     context = {
         'project': project,
         'comments':comments,
-        'form':form
+        'comment_form':comment_form
     }
 
     return render(request, 'users/project_detail.html', context)
@@ -211,13 +215,14 @@ def profile(request):
 def CommentCreateView(request,pk):
     project = get_object_or_404(Project,pk=pk)
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.project = project
-            comment.author = request.user
-            comment.save()
-            return redirect('project-details',pk=project.pk)
+        if 'wrongstring' in request.POST:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.project = project
+                comment.author = request.user
+                comment.save()
+                return redirect('project-details',pk=project.pk)
     else:
         form = CommentForm()
     context = {
