@@ -1,21 +1,22 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class='register-login-profile-form'>
-    <form method='POST'>
-        <fieldset class='form-group'>
-            <legend class='border-bottom mb-4'>Update profile</legend>
-            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-            <h2>{{ user.username }}</h2>
-            {% csrf_token %}
+<div class="card project-card" style="width: 800px;">
+    <div class="card-body project-card-body">
+        <form method='POST'>
+            <fieldset class='form-group'>
+                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                <h2>{{ user.username }}</h2>
+                {% csrf_token %}
+                <br>
+                <legend class='border-bottom mb-4'>Personal information</legend>
+                {{ u_form|crispy }}
+            </fieldset>
             <br>
-            <legend class='border-bottom mb-4'>Personal information</legend>
-            {{ u_form|crispy }}
-        </fieldset>
-        <br>
-        <div class='form-group'>
-            <button class='btn btn-outline-success' type='submit'>Update</button>
-        </div>
-    </form>
+            <div class='form-group'>
+                <button class='btn btn-outline-success' type='submit'>Update</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock content %}

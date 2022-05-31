@@ -29,19 +29,18 @@ class Project(models.Model):
         return reverse('project-details',kwargs={'pk':self.pk})
 
 
-'''
+
 class Comment(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     project = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='comments')
     content = models.TextField()
 
     def __str__(self):
-        return f'{self.content} | {self.date_posted} | {self.author}'
+        return f'{self.content} | {self.author}'
     
     #def get_absolute_url(self):
     #    return reverse('post-details',kwargs={'pk':self.pk})
 
-'''
 
 '''
 class Comment(models.Model):

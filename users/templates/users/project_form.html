@@ -1,7 +1,8 @@
 {% extends 'main/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class='register-login-profile-form'>
+<div class="card project-card" style="width: 800px;">
+    <div class="card-body project-card-body">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -14,4 +15,5 @@
             </div>
         </form>
     </div>
+</div>
 {% endblock content %}

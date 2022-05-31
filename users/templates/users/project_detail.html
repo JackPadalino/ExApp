@@ -1,13 +1,38 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <article class="media content-section">
-        <div class="media-body">
-            <h1 >{{ object.title }}</h1>
-            <h2>{{ object.user.first_name }} {{ project.user.last_name }}</h2>
-            <p>{{ object.description }}</p>
+
+
+<div class="card project-card" style="width: 800px;">
+    <!--<img src="..." class="card-img-top" alt="...">-->
+    <div class="card-body project-card-body">
+        <h2>{{ project.title }}</h2>
+        <h5>{{ project.student.first_name }} {{ project.student.last_name }}</h5>
+        <div class='project-card-blurb'>
+            <p>{{ project.description }}</p>
         </div>
-    </article>
+        {% if project.student == user %}
+            <a href="{% url 'update-project' project.pk %}">Edit</a>
+            <a href="{% url 'delete-project' project.pk %}">Delete</a>
+    {% endif %}
+    </div>
+</div>
+
+
+{% if not comments %}
+    <br>
+    <h3>No comments yet...</h3>
+    <a href="{% url 'add-comment' project.pk %}">Add Comment</a>
+{% else %}
+    <br>
+    <h3>Comments</h3>
+    {% for comment in comments %}
+        <p>{{ comment.content }} - <b>{{ comment.author }}</b></p>
+    {% endfor %}
+    <a href="{% url 'add-comment' project.pk %}">Add Comment</a>
+{% endif %}
+
+
     <!--{% for comment in profile.comments.all %}
         <p>{{ comment.content }} - {{ comment.author.first_name }} {{ comment.author.last_name }}</p>
     {% endfor %}-->

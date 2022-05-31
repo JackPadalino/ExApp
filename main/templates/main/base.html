@@ -9,9 +9,9 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
     {% if title %}
-        <title>AMS EXAP - {{ title }}</title>
+    <title>AMS EXAP - {{ title }}</title>
     {% else %}
-        <title>AMS EXAP</title>
+    <title>AMS EXAP</title>
     {% endif %}
 </head>
 
@@ -27,41 +27,55 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'users-studentprojects' %}">All Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'users-firstperiodprojects' %}">1st Period Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'users-sixthperiodprojects' %}">6th Period Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'users-seventhperiodprojects' %}">7th Period Projects</a>
-                        </li>
-                    {% endif %}    
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'users-studentprojects' %}">All Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'users-firstperiodprojects' %}">1st Period Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'users-sixthperiodprojects' %}">6th Period Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'users-seventhperiodprojects' %}">7th Period
+                            Projects</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Periods
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">All periods</a></li>
+                            <li><a class="dropdown-item" href="#">1st period</a></li>
+                            <li><a class="dropdown-item" href="#">6th period</a></li>
+                            <li><a class="dropdown-item" href="#">6th period</a></li>
+                        </ul>
+                    </li>
+
+                    {% endif %}
                 </ul>
             </div>
             <div class='navbar-nav'>
                 {% if user.is_authenticated %}
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-myprojects' user.id %}">My EXAP projects</a>
-                    <a class="nav-link active" aria-current="page" href="{% url 'create-project' %}">New Project</a>
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-profile' %}">{{ user.username }}</a>
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-logout' %}">Logout</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'users-myprojects' user.id %}">My EXAP
+                    projects</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'create-project' %}">New Project</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'users-profile' %}">{{ user.username }}</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'users-logout' %}">Logout</a>
                 {% else %}
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-login' %}">Login</a>
-                    <a class="nav-link active" aria-current="page" href="{% url 'users-register' %}">Register</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'users-login' %}">Login</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'users-register' %}">Register</a>
                 {% endif %}
             </div>
         </div>
     </nav>
     <main role="main" class='page-content'>
         {% if messages %}
-            {% for message in messages %}
-                <div class='alert alert-{{ message.tags }} alert-messages'>
-                    {{ message }}
-                </div>
-            {% endfor %}
+        {% for message in messages %}
+        <div class='alert alert-{{ message.tags }} alert-messages'>
+            {{ message }}
+        </div>
+        {% endfor %}
         {% endif %}
         {% block content %}
         {% endblock %}

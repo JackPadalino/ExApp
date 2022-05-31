@@ -9,8 +9,8 @@
             </fieldset>
             <br>
             <div class='form-group'>
+                <a class="btn btn-outline-dark" href="{% url 'project-details' object.id %}">Cancel</a>
                 <button class="btn btn-outline-danger" type='submit'>Yes, Delete</button>
-                <a class="btn btn-outline-dark" href="{% url 'users-project-details' object.id %}">Cancel</a>
             </div>
         </form>
     </div>

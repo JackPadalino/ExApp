@@ -1,24 +1,23 @@
 {% extends 'main/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class='page-title'>
-    <h1>This is the login page!</h1>
-</div>
-<div class='register-login-profile-form'>
-    <form method='POST'>
-        {% csrf_token %}
-        <fieldset class='form-group'>
-            <legend class='border-bottom mb-4'>Log in</legend>
-            {{ form|crispy }}
-        </fieldset>
+<div class="card project-card" style="width: 400px;">
+    <div class="card-body project-card-body">
+        <form method='POST'>
+            {% csrf_token %}
+            <fieldset class='form-group'>
+                <legend class='border-bottom mb-4'>Log in</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <br>
+            <div class='form-group'>
+                <button class='btn btn-outline-success' type='submit'>Log in</button>
+            </div>
+        </form>
         <br>
-        <div class='form-group'>
-            <button class='btn btn-outline-success' type='submit'>Log in</button>
+        <div>
+            <small class='text-muted'>Need an account? <a class='ml-2' href="{% url 'users-register' %}">Sign up now</a></small>
         </div>
-    </form>
-    <br>
-    <div>
-        <small class='text-muted'>Need an account? <a class='ml-2' href="{% url 'users-register' %}">Sign up now</a></small>
     </div>
 </div>
 {% endblock content %}
