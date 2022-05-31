@@ -17,6 +17,7 @@ class Profile(models.Model):
 class Project(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
     period = models.IntegerField(default=1)
+    liked = models.ManyToManyField(User,default=None,blank=True,related_name='likes')
     #image(s) = need to add an image field here for single or multiple project photos
     title = models.CharField(max_length=50,default='My EXAP project')
     blurb = models.CharField(max_length=100,default='Check out my project')
@@ -27,8 +28,10 @@ class Project(models.Model):
     
     def get_absolute_url(self):
         return reverse('project-details',kwargs={'pk':self.pk})
-
-
+    
+    @property
+    def count_likes(self):
+        return self.liked.all().count()
 
 class Comment(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -41,6 +44,18 @@ class Comment(models.Model):
     #def get_absolute_url(self):
     #    return reverse('post-details',kwargs={'pk':self.pk})
 
+like_choices = (
+    ('Like','Like'),
+    ('Unlike','Unlike') 
+)
+
+class Like(models.Model):
+    student = models.ForeignKey(User,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    value = models.CharField(choices=like_choices,default='Like',max_length=10)
+
+    def __str__(self):
+        return f'{self.project}'
 
 '''
 class Comment(models.Model):
