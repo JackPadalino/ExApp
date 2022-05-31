@@ -26,6 +26,6 @@ urlpatterns = [
     path('projects/<int:pk>/',ProjectDetailView,name='project-details'),
     path('projects/<int:pk>/update/',ProjectUpdateView.as_view(),name='update-project'),
     path('projects/<int:pk>/delete/',ProjectDeleteView.as_view(),name='delete-project'),
-    path('projects/<int:pk>/comment/',CommentCreateView,name='add-comment'),
+    #path('projects/<int:pk>/comment/',CommentCreateView,name='add-comment'),
     #path('projects/<int:user_id>/comment/',CommentCreateView.as_view(),name='add-comment'),
 ]
