@@ -3,17 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile,Comment
 
-'''
-class UserRegisterForm(forms.ModelForm):
-    username = forms.CharField(max_length=100)
-    password = forms.CharField(max_length=100)
-    email = forms.CharField(max_length=100)
-    period = forms.IntegerField()
-    class Meta:
-        model = User
-        fields = ["username", "password", "email", "period"]
-'''
-
 # here we are inheriting the user creating form that comes with Django, but we are adding the email field so 
 # we can validate a user using their email
 class UserRegisterForm(UserCreationForm):
@@ -24,23 +13,6 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['first_name','last_name','username','email','password1','password2']
         #fields = ['first_name','last_name','email','username','password1','password2']
-
-'''
-class UserPeriodForm(forms.ModelForm):
-    periods = [
-        (1,1),
-        (2,2),
-        (3,3),
-        (4,4),
-        (6,6),
-        (7,7),
-    ]
-    period = forms.ChoiceField(choices=periods)
-
-    class Meta:
-        model = Profile
-        fields = ['period']
-'''
 
 class UserProfileForm(forms.ModelForm):
     periods = [
@@ -89,3 +61,14 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+
+'''
+class UserRegisterForm(forms.ModelForm):
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=100)
+    email = forms.CharField(max_length=100)
+    period = forms.IntegerField()
+    class Meta:
+        model = User
+        fields = ["username", "password", "email", "period"]
+'''
