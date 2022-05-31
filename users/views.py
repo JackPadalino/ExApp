@@ -119,12 +119,23 @@ class MyProjectsListView(LoginRequiredMixin,ListView):
 
 @login_required
 def ProjectDetailView(request,pk):
-    project = Project.objects.get(id=pk)
+    #project = Project.objects.get(id=pk)
+    project = get_object_or_404(Project,id=pk)
     comments = Comment.objects.filter(project=project)
-
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.project = project
+            comment.author = request.user
+            comment.save()
+            return redirect('project-details',pk=project.pk)
+    else:
+        form = CommentForm()
     context = {
         'project': project,
-        'comments':comments
+        'comments':comments,
+        'form':form
     }
 
     return render(request, 'users/project_detail.html', context)
@@ -214,3 +225,5 @@ def CommentCreateView(request,pk):
         'project':project
     }
     return render(request,'users/addcomment.html',context)
+
+

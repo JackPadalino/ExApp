@@ -2,7 +2,6 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-
 <div class="card project-card" style="width: 800px;">
     <!--<img src="..." class="card-img-top" alt="...">-->
     <div class="card-body project-card-body">
@@ -18,23 +17,33 @@
     </div>
 </div>
 
-
 {% if not comments %}
     <br>
     <h3>No comments yet...</h3>
-    <a href="{% url 'add-comment' project.pk %}">Add Comment</a>
+    <!--<a href=url 'add-comment' project.pk >Add Comment</a>-->
 {% else %}
     <br>
     <h3>Comments</h3>
     {% for comment in comments %}
         <p>{{ comment.content }} - <b>{{ comment.author }}</b></p>
     {% endfor %}
-    <a href="{% url 'add-comment' project.pk %}">Add Comment</a>
+    <!--<a href= url 'add-comment' project.pk >Add Comment</a>-->
 {% endif %}
 
+<br>
 
-    <!--{% for comment in profile.comments.all %}
-        <p>{{ comment.content }} - {{ comment.author.first_name }} {{ comment.author.last_name }}</p>
-    {% endfor %}-->
-    <!--<a href= url 'add-comment' profile.id >Add comment</a>-->
+<h3>Add comment</h3>
+<div class='register-login-profile-form'>
+    <form method="POST">
+        <fieldset class="form-group">
+            {% csrf_token %}
+            {{ form|crispy }}
+        </fieldset>
+        <br>
+        <div class='form-group'>
+            <button class="btn btn-outline-success" type='submit' value='addcomment'>Add comment</button>
+        </div>
+    </form>
+</div>
+
 {% endblock %}
