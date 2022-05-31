@@ -25,7 +25,8 @@
     <br>
     <h3>Comments</h3>
     {% for comment in comments %}
-        <p>{{ comment.content }} - <b>{{ comment.author }}</b></p>
+        <b>{{ comment.author }}</b>
+        <p>{{ comment.content }}</p>
     {% endfor %}
     <!--<a href= url 'add-comment' project.pk >Add Comment</a>-->
 {% endif %}
