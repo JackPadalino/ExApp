@@ -215,14 +215,13 @@ def profile(request):
 def CommentCreateView(request,pk):
     project = get_object_or_404(Project,pk=pk)
     if request.method == 'POST':
-        if 'wrongstring' in request.POST:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.project = project
-                comment.author = request.user
-                comment.save()
-                return redirect('project-details',pk=project.pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.project = project
+            comment.author = request.user
+            comment.save()
+            return redirect('project-details',pk=project.pk)
     else:
         form = CommentForm()
     context = {
