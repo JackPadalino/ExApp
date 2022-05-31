@@ -117,6 +117,7 @@ class MyProjectsListView(LoginRequiredMixin,ListView):
 
 
 
+
 @login_required
 def ProjectDetailView(request,pk):
     project = Project.objects.get(id=pk)
@@ -177,6 +178,7 @@ class ProjectUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
 
 
 
+
 class ProjectDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Project
     success_url = reverse_lazy('users-studentprojects')
@@ -229,5 +231,3 @@ def CommentCreateView(request,pk):
         'project':project
     }
     return render(request,'users/addcomment.html',context)
-
-
