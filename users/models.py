@@ -13,10 +13,18 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
 
+periods = (
+    (1,1),
+    (2,2),
+    (3,3),
+    (4,4),
+    (6,6),
+    (7,7),
+)
 
 class Project(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
-    period = models.IntegerField(default=1)
+    period = models.IntegerField(choices=periods,default=1)
     liked = models.ManyToManyField(User,default=None,blank=True,related_name='likes')
     #image(s) = need to add an image field here for single or multiple project photos
     title = models.CharField(max_length=50,default='My EXAP project')
