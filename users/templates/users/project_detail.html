@@ -38,11 +38,11 @@
     <form method="POST">
         <fieldset class="form-group">
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ comment_form|crispy }}
         </fieldset>
         <br>
         <div class='form-group'>
-            <button class="btn btn-outline-success" type='submit' value='addcomment'>Add comment</button>
+            <button class="btn btn-outline-success" type='submit' name='commentbutton'>Add comment</button>
         </div>
     </form>
 </div>
