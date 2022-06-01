@@ -62,7 +62,9 @@ body{
 }
 
 .alert-messages{
-  width:800px;
+  width:600px;
+  text-align:center;
+  /*justify-content:center;*/
 }
 
 .likebutton{

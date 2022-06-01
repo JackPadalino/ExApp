@@ -10,7 +10,7 @@
                 <!--<img src="..." class="card-img-top" alt="...">-->
                 <div class="card-body project-card-body">
                     <h5><a class="article-title" href="{% url 'project-details' project.pk %}">{{ project.title }}</a></h5>
-                    <h8 class="card-title project-card-student">{{ project.student.username }}</h8>
+                    <h8 class="card-title project-card-student">{{ project.student.first_name }} {{ project.student.last_name }}</h8>
                     <div class='project-card-blurb'>
                         <p class="card-text project-card-text">{{ project.blurb }}</p>
                     </div>
