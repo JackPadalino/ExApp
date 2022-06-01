@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light main-navigation-bar">
+    <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'main-home' %}"><b>AMS EXAP</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -31,14 +31,13 @@
                         <a class="nav-link active" href="{% url 'users-studentprojects' %}">All Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'users-firstperiodprojects' %}">1st Period Projects</a>
+                        <a class="nav-link active" href="{% url 'users-firstperiodprojects' %}">1st Period</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'users-sixthperiodprojects' %}">6th Period Projects</a>
+                        <a class="nav-link active" href="{% url 'users-sixthperiodprojects' %}">6th Period</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'users-seventhperiodprojects' %}">7th Period
-                            Projects</a>
+                        <a class="nav-link active" href="{% url 'users-seventhperiodprojects' %}">7th Period</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -46,7 +45,7 @@
             <div class='navbar-nav'>
                 {% if user.is_authenticated %}
                 <a class="nav-link active" aria-current="page" href="{% url 'users-myprojects' user.id %}">My EXAP
-                    projects</a>
+                    Projects</a>
                 <a class="nav-link active" aria-current="page" href="{% url 'create-project' %}">New Project</a>
                 <a class="nav-link active" aria-current="page" href="{% url 'users-profile' %}">{{ user.username }}</a>
                 <a class="nav-link active" aria-current="page" href="{% url 'users-logout' %}">Logout</a>

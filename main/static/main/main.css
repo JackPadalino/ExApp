@@ -4,7 +4,7 @@ body{
   background-color:	#caebd3;
 }
 
-.main-navigation-bar {
+.navbar {
   background-color: #50a569;
   padding-left:10px;
   padding-right:10px;
@@ -18,12 +18,23 @@ body{
 
 .page-title{
   margin-bottom:20px;
+  text-align:center;
+}
+
+.welcome-title-div{
+  padding-top:100px;
+  text-align:center;
+}
+
+.welcome-title{
+  font-size:125px;
 }
 
 .project-card{
-  margin-top:10px;
+  /*margin-top:10px;
   margin-bottom:10px;
-  box-shadow: 7px 7px 7px rgb(75, 75, 75);
+  margin:10px;*/
+  box-shadow: 7px 7px 10px rgb(75, 75, 75);
 }
 
 .project-card-title{
@@ -42,4 +53,19 @@ body{
 
 .alert-messages{
   width:800px;
+}
+
+.likebutton{
+  font-size:10px;
+  border-radius:10px;
+}
+
+.container{
+  /*flex-direction:row;*/
+  display:flex;
+  flex-wrap:wrap;
+  /*align-content:space-evenly;*/
+  justify-content:center;
+  row-gap:20px;
+  column-gap:20px;
 }

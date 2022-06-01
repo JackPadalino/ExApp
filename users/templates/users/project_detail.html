@@ -47,7 +47,7 @@
 
 <h3>Add comment</h3>
 <div class='register-login-profile-form'>
-    <form method="POST">
+    <form method="POST" class='comment-form'>
         <fieldset class="form-group">
             {% csrf_token %} 
             {{ comment_form|crispy }}
