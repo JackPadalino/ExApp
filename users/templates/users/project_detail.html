@@ -10,10 +10,22 @@
         <div class='project-card-blurb'>
             <p>{{ project.description }}</p>
         </div>
+        {% if project.student != user %}
+            <form method="POST">
+                {% csrf_token %}
+                <input type='hidden' name='post_id' value="{{ project.id }}">
+                    {% if user not in project.liked.all %}
+                        <button class="likebutton btn btn-outline-success" type='submit' name='likebutton'>Like</button>
+                    {% else %}
+                        <button class="likebutton btn btn-outline-danger likebutton" type='submit' name='likebutton'>Unlike</button>
+                    {% endif %}
+            </form>
+        {% endif %}
         {% if project.student == user %}
+            
             <a href="{% url 'update-project' project.pk %}">Edit</a>
             <a href="{% url 'delete-project' project.pk %}">Delete</a>
-    {% endif %}
+        {% endif %}
     </div>
 </div>
 
@@ -37,12 +49,12 @@
 <div class='register-login-profile-form'>
     <form method="POST">
         <fieldset class="form-group">
-            {% csrf_token %}
+            {% csrf_token %} 
             {{ comment_form|crispy }}
         </fieldset>
         <br>
         <div class='form-group'>
-            <button class="btn btn-outline-success" type='submit' name='commentbutton'>Add comment</button>
+            <button class="btn btn-outline-success comment-button" type='submit' name='commentbutton'>Add comment</button>
         </div>
     </form>
 </div>
