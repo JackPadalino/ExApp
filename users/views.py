@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView,UpdateView,Del
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .models import Project,Comment
+from .models import Project,Comment,Like
 import re
 import os
 
@@ -120,20 +120,34 @@ class MyProjectsListView(LoginRequiredMixin,ListView):
 
 @login_required
 def ProjectDetailView(request,pk):
+    user = request.user
     project = Project.objects.get(id=pk)
     #project = get_object_or_404(Project,id=pk)
     comments = Comment.objects.filter(project=project)
-    comment_form = CommentForm(request.POST)
+    comment_form = CommentForm()
     #like_form = 
     if request.method == 'POST':
         if 'commentbutton' in request.POST:
+            comment_form = CommentForm(request.POST)
             if comment_form.is_valid():
                 comment = comment_form.save(commit=False)
                 comment.project = project
-                comment.author = request.user
+                comment.author = user
                 comment.save()
                 return redirect('project-details',pk=project.pk)
         elif 'likebutton' in request.POST:
+            if user in project.liked.all():
+                project.liked.remove(user)
+            else:
+                project.liked.add(user)
+            like,created = Like.objects.get_or_create(student=user,project_id=pk)
+            if not created:
+                if like.value == 'Like':
+                    like.value = 'Unlike'
+                else:
+                    like.value = 'Like'
+            like.save()
+        else:
             pass
     else:
         comment_form = CommentForm()
@@ -231,3 +245,4 @@ def CommentCreateView(request,pk):
         'project':project
     }
     return render(request,'users/addcomment.html',context)
+
