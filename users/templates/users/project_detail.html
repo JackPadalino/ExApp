@@ -7,7 +7,7 @@
     <div class="card-body project-card-body">
         <h2>{{ project.title }}</h2>
         <h5>{{ project.student.first_name }} {{ project.student.last_name }}</h5>
-        <div class='project-card-blurb'>
+        <div class='project-card-description'>
             <p>{{ project.description }}</p>
         </div>
         {% if project.student != user %}

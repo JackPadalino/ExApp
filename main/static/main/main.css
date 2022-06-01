@@ -47,6 +47,13 @@ body{
   border-top: 1px solid grey;
 }
 
+.project-card-description{
+  /*margin-top:5px;
+  padding-top:10px;*/
+  border-top: 1px solid grey;
+  white-space: pre-line;
+}
+
 .register-login-profile-form{
   width:500px;
 }
