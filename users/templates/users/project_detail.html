@@ -22,7 +22,6 @@
             </form>
         {% endif %}
         {% if project.student == user %}
-            
             <a href="{% url 'update-project' project.pk %}">Edit</a>
             <a href="{% url 'delete-project' project.pk %}">Delete</a>
         {% endif %}
@@ -37,26 +36,27 @@
     <br>
     <h3>Comments</h3>
     {% for comment in comments %}
-        <b>{{ comment.author }}</b>
+        <b>{{ comment.author.first_name }} {{ comment.author.last_name }}</b>
         <p>{{ comment.content }}</p>
     {% endfor %}
     <!--<a href= url 'add-comment' project.pk >Add Comment</a>-->
 {% endif %}
 
 <br>
-
-<h3>Add comment</h3>
-<div class='register-login-profile-form'>
-    <form method="POST" class='comment-form'>
-        <fieldset class="form-group">
-            {% csrf_token %} 
-            {{ comment_form|crispy }}
-        </fieldset>
-        <br>
-        <div class='form-group'>
-            <button class="btn btn-outline-success comment-button" type='submit' name='commentbutton'>Add comment</button>
-        </div>
-    </form>
-</div>
+{% if project.student != user %}
+    <h3>Add comment</h3>
+    <div class='register-login-profile-form'>
+        <form method="POST" class='comment-form'>
+            <fieldset class="form-group">
+                {% csrf_token %} 
+                {{ comment_form|crispy }}
+            </fieldset>
+            <br>
+            <div class='form-group'>
+                <button class="btn btn-outline-success comment-button" type='submit' name='commentbutton'>Add comment</button>
+            </div>
+        </form>
+    </div>
+{% endif %}
 
 {% endblock %}

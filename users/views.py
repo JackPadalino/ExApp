@@ -14,17 +14,23 @@ import os
 
 EMAIL_DOMAIN = os.environ.get('EMAIL_DOMAIN')
 
+emails = [
+    'jpadalino@amsbronx.org',
+    'pmarshall@amsbronx.org'
+]
+
 # register view
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            email_domain = re.search("@[\w.]+", email)
-            if email_domain.group() == EMAIL_DOMAIN:
+            #email_domain = re.search("@[\w.]+", email)
+            #if email_domain.group() == EMAIL_DOMAIN:
+            if email in emails:
                 form.save()
                 username = form.cleaned_data.get('username')
-                messages.success(request,f'Account created for {username}! You are now able to sign in.')
+                messages.success(request,f'Account created! You are now able to sign in.')
                 return redirect('users-login')
             else:
                 messages.error(request,f'Sorry. You are not authorized to register.')
