@@ -9,15 +9,11 @@ from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like
+from .emails import registered_emails
 import re
 import os
 
 EMAIL_DOMAIN = os.environ.get('EMAIL_DOMAIN')
-
-emails = [
-    'jpadalino@amsbronx.org',
-    'pmarshall@amsbronx.org'
-]
 
 # register view
 def register(request):
@@ -27,10 +23,10 @@ def register(request):
             email = form.cleaned_data.get('email')
             #email_domain = re.search("@[\w.]+", email)
             #if email_domain.group() == EMAIL_DOMAIN:
-            if email in emails:
+            if email in registered_emails:
                 form.save()
                 username = form.cleaned_data.get('username')
-                messages.success(request,f'Account created! You are now able to sign in.')
+                messages.success(request,f'Account created for {username}! You are now able to sign in.')
                 return redirect('users-login')
             else:
                 messages.error(request,f'Sorry. You are not authorized to register.')
@@ -220,6 +216,7 @@ def profile(request):
         u_form = UserUpdateForm(request.POST,instance=request.user)
         if u_form.is_valid():
             u_form.save()
+            messages.success(request,f'Your account information has been updated.')
             return redirect('users-profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
