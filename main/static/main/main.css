@@ -1,11 +1,12 @@
 
 body{
   /*background-color: rgb(159, 243, 208);*/
-  background-color:	#caebd3;
+  background-color:	#ffffff;
 }
 
 .navbar {
-  background-color: #50a569;
+  /*background-color: #50a569;*/
+  background-color: #73b2bb;
   padding-left:10px;
   padding-right:10px;
   margin-bottom:20px;
@@ -38,7 +39,8 @@ body{
 }
 
 .project-card-title{
-  color: #77DD77;
+  /*color: #77DD77;*/
+  color: #73b2bb;
 }
 
 .project-card-blurb{
