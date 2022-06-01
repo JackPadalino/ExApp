@@ -33,13 +33,14 @@ class UserProfileForm(forms.ModelForm):
 # this will create a form that will allow a user to update their profile information
 # a model form creates a form that is able to interact with a specific model
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-    first_name = forms.CharField(max_length=100)
-    last_name = forms.CharField(max_length=100)
+    #email = forms.EmailField()
+    #first_name = forms.CharField(max_length=100)
+    #last_name = forms.CharField(max_length=100)
 
     class Meta:
         model = User
-        fields = ['first_name','last_name','username','email']
+        #fields = ['first_name','last_name','username','email']
+        fields = ['username','email']
 
 # this will create a form that will alow a user update their profile picture
 class ProfileUpdateForm(forms.ModelForm):
