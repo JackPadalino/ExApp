@@ -32,6 +32,11 @@ body{
   font-size:125px;
 }
 
+.goodbye-title-div{
+  padding-top:100px;
+  text-align:center;
+}
+
 .project-card{
   /*margin-top:10px;
   margin-bottom:10px;
