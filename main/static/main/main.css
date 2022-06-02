@@ -1,15 +1,9 @@
 
 body{
-  /*background-color: rgb(159, 243, 208);*/
-  /*background-color:	#ffffff;*/
-  /*background-color:#FAF9F6;*/
   background-color:#FAF9F6;
-
 }
 
 .navbar {
-  /*background-color: #50a569;*/
-  /*background-color: #73b2bb;*/
   background-color:#FAF9F6;
   padding-left:10px;
   padding-right:10px;
@@ -41,14 +35,11 @@ body{
 }
 
 .project-card{
-  /*margin-top:10px;
-  margin-bottom:10px;
-  margin:10px;*/
+  width:2000px;
   box-shadow: 7px 7px 10px rgb(75, 75, 75);
 }
 
 .project-card-title{
-  /*color: #77DD77;*/
   color: #73b2bb;
 }
 
@@ -59,8 +50,6 @@ body{
 }
 
 .project-card-description{
-  /*margin-top:5px;
-  padding-top:10px;*/
   border-top: 1px solid grey;
   white-space: pre-line;
 }
@@ -72,7 +61,6 @@ body{
 .alert-messages{
   width:600px;
   text-align:center;
-  /*justify-content:center;*/
 }
 
 .likebutton{
@@ -81,21 +69,19 @@ body{
 }
 
 .container{
-  /*flex-direction:row;*/
   display:flex;
   flex-wrap:wrap;
-  /*align-content:space-evenly;*/
   justify-content:center;
   row-gap:20px;
   column-gap:20px;
 }
 
 .project-container{
-  /*flex-direction:row;*/
   display:flex;
-  flex-wrap:wrap;
-  /*align-content:space-evenly;*/
-  /*justify-content:center;*/
-  row-gap:20px;
-  column-gap:20px;
+}
+
+.video-container{
+  display:flex;
+  width:100%;
+  justify-content:center;
 }
