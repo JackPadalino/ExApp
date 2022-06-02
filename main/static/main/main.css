@@ -89,3 +89,13 @@ body{
   row-gap:20px;
   column-gap:20px;
 }
+
+.project-container{
+  /*flex-direction:row;*/
+  display:flex;
+  flex-wrap:wrap;
+  /*align-content:space-evenly;*/
+  /*justify-content:center;*/
+  row-gap:20px;
+  column-gap:20px;
+}
