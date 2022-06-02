@@ -125,6 +125,10 @@ def ProjectDetailView(request,pk):
     user = request.user
     project = Project.objects.get(id=pk)
     #project = get_object_or_404(Project,id=pk)
+    try:
+        video = Video.objects.get(project=project)
+    except:
+        video = None
     comments = Comment.objects.filter(project=project)
     comment_form = CommentForm()
     #like_form = 
@@ -156,7 +160,8 @@ def ProjectDetailView(request,pk):
     context = {
         'project': project,
         'comments':comments,
-        'comment_form':comment_form
+        'comment_form':comment_form,
+        'video':video
     }
 
     return render(request, 'users/project_detail.html', context)
