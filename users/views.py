@@ -21,9 +21,9 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            #email_domain = re.search("@[\w.]+", email)
-            #if email_domain.group() == EMAIL_DOMAIN:
-            if email in REGISTERED_EMAILS:
+            email_domain = re.search("@[\w.]+", email)
+            if email_domain.group() == EMAIL_DOMAIN:
+            #if email in REGISTERED_EMAILS:
                 form.save()
                 username = form.cleaned_data.get('username')
                 messages.success(request,f'Account created for {username}! You are now able to sign in.')
