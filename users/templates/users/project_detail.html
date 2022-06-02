@@ -32,7 +32,9 @@
     </div>
     <div class='video-container'>
         <div class='video-div'>
-            {% video project.url '320x220' %}
+            {% if project.url %}
+                {% video project.url '320x220' %}
+            {% endif %}
         </div>
     </div>
 </div>
