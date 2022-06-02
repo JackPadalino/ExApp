@@ -1,30 +1,39 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load embed_video_tags %}
 
-<div class="card project-card" style="width: 800px;">
-    <!--<img src="..." class="card-img-top" alt="...">-->
-    <div class="card-body project-card-body">
-        <h2>{{ project.title }}</h2>
-        <h5>{{ project.student.first_name }} {{ project.student.last_name }}</h5>
-        <div class='project-card-description'>
-            <p>{{ project.description }}</p>
+<div class='project-container'>
+    <!--<div class="card project-card" style="width: 800px;">-->
+    <div class="card project-card" >
+        <!--<img src="..." class="card-img-top" alt="...">-->
+        <div class="card-body project-card-body">
+            <h2>{{ project.title }}</h2>
+            <h5>{{ project.student.first_name }} {{ project.student.last_name }}</h5>
+            <div class='project-card-description'>
+                <p>{{ project.description }}</p>
+            </div>
+            {% if project.student != user %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type='hidden' name='post_id' value="{{ project.id }}">
+                        {% if user not in project.liked.all %}
+                            <button class="likebutton btn btn-outline-info" type='submit' name='likebutton'>Vote</button>
+                        {% else %}
+                            <button class="likebutton btn btn-outline-success likebutton" type='submit' name='likebutton'>I voted!</button>
+                        {% endif %}
+                </form>
+            {% endif %}
+            {% if project.student == user %}
+                <a href="{% url 'update-project' project.pk %}">Edit</a>
+                <a href="{% url 'delete-project' project.pk %}">Delete</a>
+            {% endif %}
         </div>
-        {% if project.student != user %}
-            <form method="POST">
-                {% csrf_token %}
-                <input type='hidden' name='post_id' value="{{ project.id }}">
-                    {% if user not in project.liked.all %}
-                        <button class="likebutton btn btn-outline-info" type='submit' name='likebutton'>Vote</button>
-                    {% else %}
-                        <button class="likebutton btn btn-outline-success likebutton" type='submit' name='likebutton'>I voted!</button>
-                    {% endif %}
-            </form>
-        {% endif %}
-        {% if project.student == user %}
-            <a href="{% url 'update-project' project.pk %}">Edit</a>
-            <a href="{% url 'delete-project' project.pk %}">Delete</a>
-        {% endif %}
+    </div>
+    <div class='video-container'>
+        <div class='video-div'>
+            {% video video.url '320x220' %}
+        </div>
     </div>
 </div>
 
