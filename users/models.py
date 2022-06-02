@@ -65,4 +65,7 @@ class Like(models.Model):
 
 class Video(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='videos',default=None)
-    video = EmbedVideoField()
+    url = EmbedVideoField()
+
+    def __str__(self):
+        return f'{self.project}'
