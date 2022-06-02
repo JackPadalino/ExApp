@@ -64,5 +64,5 @@ class Like(models.Model):
         return f'{self.project}'
 
 class Video(models.Model):
-    student = models.ForeignKey(User,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='videos',default=None)
     video = EmbedVideoField()

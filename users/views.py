@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView,UpdateView,Del
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .models import Project,Comment,Like
+from .models import Project,Comment,Like,Video
 import re
 import os
 
