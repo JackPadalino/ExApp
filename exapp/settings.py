@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['exap.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'embed_video',
     'main',
     'users',
     'crispy_forms',

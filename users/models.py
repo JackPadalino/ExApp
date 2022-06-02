@@ -2,6 +2,7 @@ from dataclasses import field
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from embed_video.fields import EmbedVideoField
 
 # Create your models here.
 class Profile(models.Model):
@@ -62,12 +63,6 @@ class Like(models.Model):
     def __str__(self):
         return f'{self.project}'
 
-'''
-class Comment(models.Model):
-    profile = models.ForeignKey(Profile,related_name='comments',on_delete=models.CASCADE)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
-    content = models.TextField()
-
-    def __str__(self):
-        return f"{self.content} - {self.author.first_name} {self.author.last_name} on {self.profile.user.first_name} {self.profile.user.last_name}'s project"
-'''
+class Video(models.Model):
+    student = models.ForeignKey(User,on_delete=models.CASCADE)
+    video = EmbedVideoField()
