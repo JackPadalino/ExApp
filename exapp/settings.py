@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+import django_on_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,3 +137,5 @@ LOGIN_URL = 'users-login'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+django_on_heroku.settings(locals())
