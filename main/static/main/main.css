@@ -1,13 +1,14 @@
 
 body{
   /*background-color: rgb(159, 243, 208);*/
-  background-color:	#ffffff;
+  /*background-color:	#ffffff;*/
+  background-color:#FAF9F6;
 }
 
 .navbar {
   /*background-color: #50a569;*/
   /*background-color: #73b2bb;*/
-  background-color: #ffffff;
+  background-color:#FAF9F6;
   padding-left:10px;
   padding-right:10px;
   margin-bottom:20px;
