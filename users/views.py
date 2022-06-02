@@ -183,7 +183,7 @@ class ProjectCreateView(LoginRequiredMixin,CreateView):
 
 class ProjectUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Project
-    fields = ['period','title','blurb','description','url']
+    fields = ['period','title','blurb','description','video_URL']
 
     def form_valid(self,form):
         form.instance.student = self.request.user
