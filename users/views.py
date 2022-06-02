@@ -9,11 +9,11 @@ from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like
-from .emails import registered_emails
 import re
 import os
 
 EMAIL_DOMAIN = os.environ.get('EMAIL_DOMAIN')
+REGISTERED_EMAILS = os.environ.get('REGISTERED_EMAILS')
 
 # register view
 def register(request):
@@ -23,7 +23,7 @@ def register(request):
             email = form.cleaned_data.get('email')
             #email_domain = re.search("@[\w.]+", email)
             #if email_domain.group() == EMAIL_DOMAIN:
-            if email in registered_emails:
+            if email in REGISTERED_EMAILS:
                 form.save()
                 username = form.cleaned_data.get('username')
                 messages.success(request,f'Account created for {username}! You are now able to sign in.')
