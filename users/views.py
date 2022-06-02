@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView,UpdateView,Del
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .models import Project,Comment,Like,Video
+from .models import Project,Comment,Like
 import re
 import os
 
@@ -125,10 +125,10 @@ def ProjectDetailView(request,pk):
     user = request.user
     project = Project.objects.get(id=pk)
     #project = get_object_or_404(Project,id=pk)
-    try:
-        video = Video.objects.get(project=project)
-    except:
-        video = None
+    #try:
+    #    video = Video.objects.get(project=project)
+    #except:
+    #    video = None
     comments = Comment.objects.filter(project=project)
     comment_form = CommentForm()
     #like_form = 
@@ -161,7 +161,6 @@ def ProjectDetailView(request,pk):
         'project': project,
         'comments':comments,
         'comment_form':comment_form,
-        'video':video
     }
 
     return render(request, 'users/project_detail.html', context)
@@ -172,7 +171,7 @@ def ProjectDetailView(request,pk):
 
 class ProjectCreateView(LoginRequiredMixin,CreateView):
     model = Project
-    fields = ['period','title','blurb','description']
+    fields = ['period','title','blurb','description','url']
     
     def form_valid(self,form):
         form.instance.student = self.request.user
@@ -184,7 +183,7 @@ class ProjectCreateView(LoginRequiredMixin,CreateView):
 
 class ProjectUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Project
-    fields = ['period','title','blurb','description']
+    fields = ['period','title','blurb','description','url']
 
     def form_valid(self,form):
         form.instance.student = self.request.user

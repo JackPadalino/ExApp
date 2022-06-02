@@ -2,7 +2,7 @@ from dataclasses import field
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from embed_video.fields import EmbedVideoField
+#from embed_video.fields import EmbedVideoField
 
 # Create your models here.
 class Profile(models.Model):
@@ -24,7 +24,7 @@ class Project(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
     period = models.IntegerField(choices=periods,default=1)
     liked = models.ManyToManyField(User,default=None,blank=True,related_name='likes')
-    #image(s) = need to add an image field here for single or multiple project photos
+    url = models.URLField(max_length=1000,default='https://www.youtube.com/watch?v=E-xhxS581Uc')
     title = models.CharField(max_length=50,default='My EXAP project')
     blurb = models.CharField(max_length=100,default='Check out my project')
     description = models.TextField(default="I haven't written my project description yet, but trust me it will be awesome!")
@@ -59,13 +59,6 @@ class Like(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     value = models.CharField(choices=like_choices,default='Like',max_length=10)
-
-    def __str__(self):
-        return f'{self.project}'
-
-class Video(models.Model):
-    project = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='videos',default=None)
-    url = EmbedVideoField()
 
     def __str__(self):
         return f'{self.project}'
