@@ -124,14 +124,8 @@ class MyProjectsListView(LoginRequiredMixin,ListView):
 def ProjectDetailView(request,pk):
     user = request.user
     project = Project.objects.get(id=pk)
-    #project = get_object_or_404(Project,id=pk)
-    #try:
-    #    video = Video.objects.get(project=project)
-    #except:
-    #    video = None
     comments = Comment.objects.filter(project=project)
     comment_form = CommentForm()
-    #like_form = 
     if request.method == 'POST':
         if 'commentbutton' in request.POST:
             comment_form = CommentForm(request.POST)
@@ -252,4 +246,3 @@ def CommentCreateView(request,pk):
         'project':project
     }
     return render(request,'users/addcomment.html',context)
-
