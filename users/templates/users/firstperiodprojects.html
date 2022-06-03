@@ -6,7 +6,7 @@
 {% if user.is_authenticated %}
     <div class='container'>
         {% for project in projects %}
-            <div class="card project-card" style="width: 18rem;">
+            <div class="card project-card" style="width: 19rem;">
                 <!--<img src="..." class="card-img-top" alt="...">-->
                 <div class="card-body project-card-body">
                     <h5><a class="article-title" href="{% url 'project-details' project.pk %}">{{ project.title }}</a></h5>
