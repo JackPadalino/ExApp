@@ -27,7 +27,7 @@
                 {% endif %}
                 {% if project.student == user %}
                     <a href="{% url 'update-project' project.pk %}">Edit</a>
-                    <a href="{% url 'delete-project' project.pk %}">Delete</a>
+                    <a style='color:red;'href="{% url 'delete-project' project.pk %}">Delete</a>
                 {% endif %}
             </div>
         </div>
