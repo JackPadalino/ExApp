@@ -1,4 +1,4 @@
-
+/*~~~~~CSS for all pages~~~~~*/
 body{
   background-color:#FAF9F6;
 }
@@ -20,6 +20,7 @@ body{
   text-align:center;
 }
 
+/*~~~~~CSS for welcome page~~~~~*/
 .welcome-title-div{
   padding-top:100px;
   text-align:center;
@@ -29,13 +30,14 @@ body{
   font-size:125px;
 }
 
+/*~~~~~CSS for logout page~~~~~*/
 .goodbye-title-div{
   padding-top:100px;
   text-align:center;
 }
 
+/*~~~~~CSS for project cards~~~~~*/
 .project-card{
-  width:2000px;
   box-shadow: 7px 7px 10px rgb(75, 75, 75);
 }
 
@@ -54,20 +56,24 @@ body{
   white-space: pre-line;
 }
 
+/*~~~~~CSS for register,login, and profile forms~~~~~*/
 .register-login-profile-form{
   width:500px;
 }
 
+/*~~~~~CSS for alert messages~~~~~*/
 .alert-messages{
   width:600px;
   text-align:center;
 }
 
+/*~~~~~CSS for like/unlike button~~~~~*/
 .likebutton{
   font-size:10px;
   border-radius:10px;
 }
 
+/*~~~~~CSS for all class project pages~~~~~*/
 .container{
   display:flex;
   flex-wrap:wrap;
@@ -76,12 +82,42 @@ body{
   column-gap:20px;
 }
 
-.project-container{
+/*~~~~~CSS for project details page~~~~~*/
+.project-container1{
   display:flex;
+  flex-direction:row;
+}
+
+.project-container2{
+  display:flex;
+  flex-direction:column;
+  width:40%;
+
+}
+
+.project-comment{
+  width:60%;
 }
 
 .video-container{
   display:flex;
   width:100%;
   justify-content:center;
+}
+
+.video-div{
+  display:flex;
+  justify-content:center;
+  align-items:top;
+  height:300px;
+  padding-left:30px;
+  padding-right:30px;
+
+}
+
+.photo-gallery{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
 }
