@@ -34,7 +34,6 @@ ALLOWED_HOSTS = ['exap.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'sendgrid',
     'embed_video',
     'main',
     'users',
