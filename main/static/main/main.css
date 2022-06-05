@@ -1,10 +1,12 @@
 /*~~~~~CSS for all pages~~~~~*/
 body{
-  background-color:#FAF9F6;
+  /*background-color:#FAF9F6;*/
+  background-color:white;
 }
 
 .navbar{
-  background-color:#FAF9F6;
+  /*background-color:#FAF9F6;*/
+  background-color:white;
   padding-left:10px;
   padding-right:10px;
   margin-bottom:20px;
