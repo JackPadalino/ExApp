@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['exap.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'sendgrid',
     'embed_video',
     'main',
     'users',
@@ -139,11 +140,21 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-django_on_heroku.settings(locals())
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EXAP_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EXAP_PASSWORD')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = 'main-home'
+LOGIN_URL = 'users-login'
+
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = "sgbackend.SendGridBackend"
+#EMAIL_HOST = 'smtp.sendgrid.net'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+#EMAIL_HOST_USER = 'apikey'
+#SENDGRID_API_KEY = 
+#EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+
+
+django_on_heroku.settings(locals())
