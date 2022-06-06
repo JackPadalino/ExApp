@@ -26,7 +26,7 @@ class Project(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
     period = models.IntegerField(choices=periods,default=1)
     liked = models.ManyToManyField(User,default=None,blank=True,related_name='likes')
-    video = models.CharField(max_length=1000,default=None,blank=True)
+    video = models.CharField(max_length=1000,default=None,blank=True,null=True)
     title = models.CharField(max_length=50,default='My EXAP project')
     blurb = models.CharField(max_length=100,default='Check out my project')
     description = models.TextField(default="I haven't written my project description yet, but trust me it will be awesome!")
