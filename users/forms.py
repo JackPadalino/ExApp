@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Comment#,ProjectVideo
+from .models import Profile,Comment,Project
 
 # here we are inheriting the user creating form that comes with Django, but we are adding the email field so 
 # we can validate a user using their email
@@ -63,9 +63,12 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['content']
 
-'''
-class ProjectVideoForm(forms.ModelForm):
+#class ProjectVideoForm(forms.ModelForm):
+#    class Meta:
+#        model = ProjectVideo
+#        fields = ['URL']
+
+class VideoForm(forms.ModelForm):
     class Meta:
-        model = ProjectVideo
+        model = Project
         fields = ['video']
-'''

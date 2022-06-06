@@ -30,6 +30,7 @@ class Project(models.Model):
     title = models.CharField(max_length=50,default='My EXAP project')
     blurb = models.CharField(max_length=100,default='Check out my project')
     description = models.TextField(default="I haven't written my project description yet, but trust me it will be awesome!")
+    video = models.CharField(max_length=1000,blank=True)
 
     def __str__(self):
         return f'{self.title} | {self.student.first_name} {self.student.last_name}'
@@ -75,9 +76,9 @@ class Photo(models.Model):
         return f'{self.project}'
 '''
 
-class ProjectVideo(models.Model):
-    project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    url = models.CharField(max_length=1000,default=None,blank=True)
+#class ProjectVideo(models.Model):
+#    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+#    URL = models.CharField(max_length=1000,default=None,blank=True)
 
-    def __str__(self):
-        return f'{self.project}'
+#    def __str__(self):
+#        return f'{self.project}'

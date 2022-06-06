@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm#,ProjectVideoForm
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,VideoForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like
@@ -125,6 +125,10 @@ def ProjectDetailView(request,pk):
     user = request.user
     project = Project.objects.get(id=pk)
     comments = Comment.objects.filter(project=project)
+    #try:
+    #    video = ProjectVideo.objects.get(project=project)
+    #except:
+    #    video = None
     comment_form = CommentForm()
     if request.method == 'POST':
         if 'commentbutton' in request.POST:
@@ -155,6 +159,7 @@ def ProjectDetailView(request,pk):
         'project': project,
         'comments':comments,
         'comment_form':comment_form,
+        #'video':video
     }
 
     return render(request, 'users/project_detail.html', context)
@@ -252,23 +257,25 @@ def CommentCreateView(request,pk):
 
 
 
-'''
-# register view
-def AddMedia(request,pk):
-    project = get_object_or_404(Project,pk=pk)
-    if request.method == "POST":
-        form = ProjectVideoForm(request.POST)
-        if form.is_valid():
 
-            form.save()
-            return redirect('users-login')
-            else:
-                messages.error(request,f'Sorry. You are not authorized to register.')
+@login_required
+def MediaUpdateView(request,pk):
+    project = get_object_or_404(Project,pk=pk)
+    if request.method == 'POST':
+        v_form = VideoForm(request.POST,instance=project)
+        
+        if v_form.is_valid():
+            #video = v_form.save(commit=False)
+            #project.video = video
+            #video.project = project
+            #video.save()
+            v_form.save()
+            return redirect('project-details',pk=project.pk)
     else:
-        form = UserRegisterForm()
+        v_form = VideoForm(instance=project)
     context = {
-        'title':'Register',
-        'form':form
+        'title':'Add Media',
+        'v_form':v_form,
+        'project':project
     }
-    return render(request,'users/register.html',context)
-'''
+    return render(request,'users/media_form.html',context)
