@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,ProjectVideoForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like
@@ -248,3 +248,27 @@ def CommentCreateView(request,pk):
         'project':project
     }
     return render(request,'users/addcomment.html',context)
+
+
+
+
+'''
+# register view
+def AddMedia(request,pk):
+    project = get_object_or_404(Project,pk=pk)
+    if request.method == "POST":
+        form = ProjectVideoForm(request.POST)
+        if form.is_valid():
+
+            form.save()
+            return redirect('users-login')
+            else:
+                messages.error(request,f'Sorry. You are not authorized to register.')
+    else:
+        form = UserRegisterForm()
+    context = {
+        'title':'Register',
+        'form':form
+    }
+    return render(request,'users/register.html',context)
+'''
