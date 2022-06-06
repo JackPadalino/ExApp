@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('EXAPP_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = (os.environ.get('DEBUG_VALUE')=='True') # this set to True upon new project creation
+DEBUG = (os.environ.get('DEBUG_VALUE')=='True') # this set to True upon new project creation
 
-DEBUG = True
+#DEBUG = True
 
 ALLOWED_HOSTS = ['exap.herokuapp.com']
 
