@@ -73,12 +73,11 @@ class Photo(models.Model):
 
     def __str__(self):
         return f'{self.project}'
-
+'''
 
 class ProjectVideo(models.Model):
-    project = models.OneToOneField(Project,on_delete=models.CASCADE)
-    video = models.CharField(max_length=1000,default=None)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    url = models.CharField(max_length=1000,default=None,blank=True)
 
     def __str__(self):
         return f'{self.project}'
-'''
