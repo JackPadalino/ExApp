@@ -30,7 +30,6 @@ DEBUG = (os.environ.get('DEBUG_VALUE')=='True') # this set to True upon new proj
 
 ALLOWED_HOSTS = ['exap.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
