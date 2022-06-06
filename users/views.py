@@ -165,7 +165,8 @@ def ProjectDetailView(request,pk):
 
 class ProjectCreateView(LoginRequiredMixin,CreateView):
     model = Project
-    fields = ['period','title','blurb','description','video']
+    #fields = ['period','title','blurb','description','video']
+    fields = ['period','title','blurb','description']
     
     def form_valid(self,form):
         form.instance.student = self.request.user
@@ -177,7 +178,8 @@ class ProjectCreateView(LoginRequiredMixin,CreateView):
 
 class ProjectUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Project
-    fields = ['period','title','blurb','description','video']
+    #fields = ['period','title','blurb','description','video']
+    fields = ['period','title','blurb','description']
 
     def form_valid(self,form):
         form.instance.student = self.request.user
