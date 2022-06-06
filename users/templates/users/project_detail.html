@@ -26,9 +26,9 @@
                     </form>
                 {% endif %}
                 {% if project.student == user %}
-                    <a href="{% url 'update-project' project.pk %}">Edit</a>
-                    <a style='color:red; 'href="{% url 'delete-project' project.pk %}">Delete</a>
-                    <a style='color:green; 'href= "{% url 'add-media' project.pk %}">Add media</a>
+                    <a class="btn btn-outline-info" href="{% url 'update-project' project.pk %}">Edit</a>
+                    <a class="btn btn-outline-success" style='color:green; 'href= "{% url 'add-media' project.pk %}">Add media</a>
+                    <a class="btn btn-outline-danger" style='color:red; 'href="{% url 'delete-project' project.pk %}">Delete</a>
 
                 {% endif %}
             </div>
