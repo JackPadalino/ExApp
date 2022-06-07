@@ -263,12 +263,7 @@ def MediaUpdateView(request,pk):
     project = get_object_or_404(Project,pk=pk)
     if request.method == 'POST':
         v_form = VideoForm(request.POST,instance=project)
-        
         if v_form.is_valid():
-            #video = v_form.save(commit=False)
-            #project.video = video
-            #video.project = project
-            #video.save()
             v_form.save()
             return redirect('project-details',pk=project.pk)
     else:

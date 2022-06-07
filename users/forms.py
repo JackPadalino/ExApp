@@ -47,9 +47,15 @@ class ProfileUpdateForm(forms.ModelForm):
     period = forms.ChoiceField(choices=periods)
     class Meta:
         model = Profile
+        #fields = ['image']
         fields = []
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['video']
