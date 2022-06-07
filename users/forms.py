@@ -59,3 +59,13 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['video']
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['photo']
+
+class MediaForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['video','photo']

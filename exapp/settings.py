@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['exap.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'storages',
     'embed_video',
     'main',
     'users',
@@ -125,6 +126,8 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = 'static/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -140,10 +143,18 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'main-home'
 LOGIN_URL = 'users-login'
+
+AWS_ACCESS_KEY_ID = os.environ.get('EXAP_AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('EXAP_AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('EXAP_AWS_STORAGE_BUCKET_NAME')
+EXAP_AWS_USER=os.environ.get('EXAP_AWS_S3_USER')
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = "sgbackend.SendGridBackend"
@@ -155,6 +166,5 @@ LOGIN_URL = 'users-login'
 #EMAIL_HOST_USER = 'apikey'
 #SENDGRID_API_KEY = 
 #EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-
 
 django_on_heroku.settings(locals())

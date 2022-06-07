@@ -5,7 +5,6 @@ from django.forms import ImageField
 from django.urls import reverse
 #from embed_video.fields import EmbedVideoField
 
-# Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     def __str__(self):
@@ -27,6 +26,7 @@ class Project(models.Model):
     blurb = models.CharField(max_length=100,default='Check out my project')
     description = models.TextField(default="I haven't written my project description yet, but trust me it will be awesome!")
     video = models.CharField(max_length=1000,blank=True)
+    photo = models.ImageField(default='default.jpeg',upload_to='project_pics')
 
     def __str__(self):
         return f'{self.title} | {self.student.first_name} {self.student.last_name}'
@@ -62,12 +62,10 @@ class Like(models.Model):
     def __str__(self):
         return f'{self.project}'
 
-'''
-class Photo(models.Model):
+class GalleryPhoto(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    image = ImageField()
-    description = models.CharField(max_length=100,default=None)
+    photo = models.ImageField(default=None,upload_to='gallery_pics')
+    description = models.CharField(max_length=100,default=None,blank=True)
 
     def __str__(self):
         return f'{self.project}'
-'''
