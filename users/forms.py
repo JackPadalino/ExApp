@@ -65,7 +65,7 @@ class PhotoForm(forms.ModelForm):
         model = Project
         fields = ['photo']
 
-class MediaForm(forms.ModelForm):
+class ProjectPhotoVideoForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['video','photo']
+        fields = ['photo','video']
