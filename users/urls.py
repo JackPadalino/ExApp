@@ -10,8 +10,9 @@ from .views import (
     ProjectUpdateView,
     ProjectDeleteView,
     MyProjectsListView,
-    CommentCreateView,
-    MediaUpdateView
+    AddPhotoView,
+    AddVideoView,
+    AddGalleryView
 )
 
 urlpatterns = [
@@ -25,5 +26,7 @@ urlpatterns = [
     path('projects/<int:pk>/',ProjectDetailView,name='project-details'),
     path('projects/<int:pk>/update/',ProjectUpdateView.as_view(),name='update-project'),
     path('projects/<int:pk>/delete/',ProjectDeleteView.as_view(),name='delete-project'),
-    path('projects/<int:pk>/addmedia/',MediaUpdateView,name='add-media'),
+    path('projects/<int:pk>/addphoto/',AddPhotoView,name='add-photo'),
+    path('projects/<int:pk>/addvideo/',AddVideoView,name='add-video'),
+    path('projects/<int:pk>/addgallery/',AddGalleryView,name='add-gallery'),
 ]
