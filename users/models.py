@@ -8,8 +8,6 @@ from django.urls import reverse
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    #image = models.ImageField(default='/profile_pics/default.jpg',upload_to='profile_pics')
-
     def __str__(self):
         return f'{self.user.username}'
     def save(self, *args, **kwargs):
@@ -20,8 +18,6 @@ periods = (
     (6,6),
     (7,7),
 )
-
-#default_video = 'https://www.youtube.com/watch?v=XIMLoLxmTDw'
 
 class Project(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -75,10 +71,3 @@ class Photo(models.Model):
     def __str__(self):
         return f'{self.project}'
 '''
-
-#class ProjectVideo(models.Model):
-#    project = models.ForeignKey(Project,on_delete=models.CASCADE)
-#    URL = models.CharField(max_length=1000,default=None,blank=True)
-
-#    def __str__(self):
-#        return f'{self.project}'
