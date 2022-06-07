@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,VideoForm,ProjectPhotoVideoForm,PhotoForm
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,ProjectPhotoVideoForm,GalleryPhotoForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like
@@ -262,24 +262,15 @@ def CommentCreateView(request,pk):
 def MediaUpdateView(request,pk):
     project = get_object_or_404(Project,pk=pk)
     if request.method == 'POST':
-        form = ProjectPhotoVideoForm(request.POST,request.FILES, instance=project)
-        #v_form = VideoForm(request.POST,instance=project)
-        #p_form = PhotoForm(request.POST,instance=project)
-        #if v_form.is_valid() and p_form.is_valid():
-        if form.is_valid():
-            #v_form.save()
-            #p_form.save()
-            form.save()
+        p_form = ProjectPhotoVideoForm(request.POST,request.FILES, instance=project)
+        if p_form.is_valid():
+            p_form.save()
             return redirect('project-details',pk=project.pk)
     else:
-        #v_form = VideoForm(instance=project)
-        #p_form = PhotoForm(instance=project)
-        form = ProjectPhotoVideoForm(instance=project)
+        p_form = ProjectPhotoVideoForm(instance=project)
     context = {
         'title':'Add Media',
-        #'v_form':v_form,
-        #'p_form':p_form,
-        'form':form,
+        'p_form':p_form,
         'project':project
     }
     return render(request,'users/media_form.html',context)
