@@ -67,7 +67,9 @@
     </div>
     <div class='project-container2'>
         <div class='photo-gallery'>
-            <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+            {% if project.photo %}
+                <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+            {% endif %}
         </div>
         <!--video containers and div-->
         <div class='video-container'>
@@ -75,8 +77,6 @@
                 <!--<h3>Video upload coming soon!</h3>-->
                 {% if project.video %}
                     {% video project.video '400x300' %}
-                {% else %}
-                    <h3>Add a video to explain your project and show off your process!</h3>
                 {% endif %}
             </div>
         </div>

@@ -9,7 +9,9 @@
             <div class="card project-card" style="width: 19rem;">
                 <!--<img src="..." class="card-img-top" alt="...">-->
                 <div class='project-card-image'>
-                    <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+                    {% if project.photo %}
+                        <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+                    {% endif %}
                 </div>
                 <div class="card-body project-card-body">
                     <h5><a class="article-title" href="{% url 'project-details' project.pk %}">{{ project.title }}</a></h5>
