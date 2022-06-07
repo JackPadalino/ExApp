@@ -26,7 +26,7 @@ class Project(models.Model):
     blurb = models.CharField(max_length=100,default='Check out my project')
     description = models.TextField(default="I haven't written my project description yet, but trust me it will be awesome!")
     video = models.CharField(max_length=1000,blank=True)
-    photo = models.ImageField(default='default.jpeg',upload_to='project_pics')
+    photo = models.ImageField(default=None,blank=True,upload_to='project_pics')
 
     def __str__(self):
         return f'{self.title} | {self.student.first_name} {self.student.last_name}'
