@@ -11,6 +11,14 @@
             <div class="card-body project-card-body">
                 <h2>{{ project.title }}</h2>
                 <h5>{{ project.student.first_name }} {{ project.student.last_name }}</h5>
+                {% if project.student == user %}
+                    <a class="btn btn-outline-primary" href="{% url 'update-project' project.pk %}">Edit</a>
+                    <a class="btn btn-outline-success" href= "{% url 'add-photo' project.pk %}">Change project picture</a>
+                    <a class="btn btn-outline-warning" href= "{% url 'add-video' project.pk %}">Add video</a>
+                    <!--<a class="btn btn-outline-info" href=  url 'add-gallery' project.pk %}">Add photos to gallery</a>-->
+                    <a class="btn btn-outline-danger" href="{% url 'delete-project' project.pk %}">Delete</a>
+                {% endif %}
+                <br><br>
                 <div class='project-card-description'>
                     <p>{{ project.description }}</p>
                 </div>
@@ -24,12 +32,6 @@
                                 <button class="likebutton btn btn-outline-success likebutton" type='submit' name='likebutton'>I voted!</button>
                             {% endif %}
                     </form>
-                {% endif %}
-                {% if project.student == user %}
-                    <a class="btn btn-outline-info" href="{% url 'update-project' project.pk %}">Edit</a>
-                    <a class="btn btn-outline-success" style='color:green; 'href= "{% url 'add-media' project.pk %}">Add media</a>
-                    <a class="btn btn-outline-danger" style='color:red; 'href="{% url 'delete-project' project.pk %}">Delete</a>
-
                 {% endif %}
             </div>
         </div>
@@ -65,7 +67,7 @@
     </div>
     <div class='project-container2'>
         <div class='photo-gallery'>
-            <h3>Photo upload coming soon!</h3>
+            <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
         </div>
         <!--video containers and div-->
         <div class='video-container'>

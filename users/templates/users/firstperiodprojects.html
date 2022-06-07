@@ -8,6 +8,9 @@
         {% for project in projects %}
             <div class="card project-card" style="width: 19rem;">
                 <!--<img src="..." class="card-img-top" alt="...">-->
+                <div class='project-card-image'>
+                    <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+                </div>
                 <div class="card-body project-card-body">
                     <h5><a class="article-title" href="{% url 'project-details' project.pk %}">{{ project.title }}</a></h5>
                     <h8 class="card-title project-card-student">{{ project.student.first_name }} {{ project.student.last_name }}</h8>
