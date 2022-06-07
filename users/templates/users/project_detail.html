@@ -17,8 +17,8 @@
                     <a class="btn btn-outline-warning" href= "{% url 'add-video' project.pk %}">Add video</a>
                     <!--<a class="btn btn-outline-info" href=  url 'add-gallery' project.pk %}">Add photos to gallery</a>-->
                     <a class="btn btn-outline-danger" href="{% url 'delete-project' project.pk %}">Delete</a>
+                    <br><br>
                 {% endif %}
-                <br><br>
                 <div class='project-card-description'>
                     <p>{{ project.description }}</p>
                 </div>
