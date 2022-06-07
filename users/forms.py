@@ -55,17 +55,22 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['content']
 
-class VideoForm(forms.ModelForm):
+class ProjectVideoForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['video']
+
+class ProjectPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['photo']
 
 class GalleryPhotoForm(forms.ModelForm):
     class Meta:
         model = GalleryPhoto
         fields = ['photo']
 
-class ProjectPhotoVideoForm(forms.ModelForm):
-    class Meta:
-        model = Project
-        fields = ['photo','video']
+#class ProjectPhotoVideoForm(forms.ModelForm):
+#    class Meta:
+#        model = Project
+#        fields = ['photo','video']
