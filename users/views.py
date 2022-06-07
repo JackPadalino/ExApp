@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,ProjectPhotoVideoForm,GalleryPhotoForm
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,ProjectVideoForm,ProjectPhotoForm,GalleryPhotoForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like
@@ -258,6 +258,7 @@ def CommentCreateView(request,pk):
 
 
 
+'''
 @login_required
 def MediaUpdateView(request,pk):
     project = get_object_or_404(Project,pk=pk)
@@ -274,3 +275,67 @@ def MediaUpdateView(request,pk):
         'project':project
     }
     return render(request,'users/media_form.html',context)
+'''
+
+
+
+
+
+@login_required
+def AddPhotoView(request,pk):
+    project = get_object_or_404(Project,pk=pk)
+    if request.method == 'POST':
+        form = ProjectPhotoForm(request.POST,request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('project-details',pk=project.pk)
+    else:
+        form = ProjectPhotoForm(instance=project)
+    context = {
+        'title':'Add Photo',
+        'form':form,
+        'project':project
+    }
+    return render(request,'users/add_photo.html',context)
+
+
+
+
+
+@login_required
+def AddVideoView(request,pk):
+    project = get_object_or_404(Project,pk=pk)
+    if request.method == 'POST':
+        form = ProjectVideoForm(request.POST,request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('project-details',pk=project.pk)
+    else:
+        form = ProjectVideoForm(instance=project)
+    context = {
+        'title':'Add Video',
+        'form':form,
+        'project':project
+    }
+    return render(request,'users/add_video.html',context)
+
+
+
+
+
+@login_required
+def AddGalleryView(request,pk):
+    project = get_object_or_404(Project,pk=pk)
+    if request.method == 'POST':
+        form = GalleryPhotoForm(request.POST,request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('project-details',pk=project.pk)
+    else:
+        form = GalleryPhotoForm(instance=project)
+    context = {
+        'title':'Add Gallery Photos',
+        'form':form,
+        'project':project
+    }
+    return render(request,'users/add_gallery.html',context)
