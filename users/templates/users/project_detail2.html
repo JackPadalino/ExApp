@@ -23,7 +23,7 @@
                     <div class='project-card-description'>
                         <p>{{ project.description }}</p>
                     </div>
-                    {% if project.student == user %}
+                    {% if project.student != user %}
                     <form method="POST">
                         {% csrf_token %}
                         <input type='hidden' name='post_id' value="{{ project.id }}">
