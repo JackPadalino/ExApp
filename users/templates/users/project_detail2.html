@@ -37,22 +37,24 @@
                 </div>
             </div>
         </div>
-        <div class='project-container2'>
-            <div class='photo-gallery'>
+        {% if project.photo or project.video %}
+            <div class='project-container2'>
                 {% if project.photo %}
-                    <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+                    <div class='photo-gallery'>
+                        <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+                    </div>
+                {% endif %}
+                <!--video containers and div-->
+                {% if project.video %}
+                    <div class='video-container'>
+                        <div class='video-div'>
+                            <!--<h3>Video upload coming soon!</h3>-->
+                            {% video project.video '400x300' %}
+                        </div>
+                    </div>
                 {% endif %}
             </div>
-            <!--video containers and div-->
-            <div class='video-container'>
-                <div class='video-div'>
-                    <!--<h3>Video upload coming soon!</h3>-->
-                    {% if project.video %}
-                        {% video project.video '400x300' %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+        {% endif %}
     </div>
 </div>
 
