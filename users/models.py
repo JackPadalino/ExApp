@@ -65,7 +65,7 @@ class Like(models.Model):
 
 class GalleryPhoto(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    photo = models.ImageField(default=None,null=False,blank=False)
+    photo = models.ImageField(default=None,null=False,blank=False,upload_to='gallery_pics')
     #description = models.CharField(max_length=100,default=None,blank=True)
 
     def __str__(self):
