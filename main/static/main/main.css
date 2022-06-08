@@ -115,7 +115,7 @@ body{
   display:flex;
   flex-direction:column;
   width:40%;
-  padding-top:192px; /*remove this if switching back to project_detail.html*/
+  padding-top:20px; /*remove this if switching back to project_detail.html*/
   padding-bottom:30px;
 
 }
