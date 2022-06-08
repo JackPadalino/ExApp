@@ -162,7 +162,7 @@ def ProjectDetailView(request,pk):
         #'video':video
     }
 
-    return render(request, 'users/project_detail.html', context)
+    return render(request, 'users/project_detail2.html', context)
 
 
 

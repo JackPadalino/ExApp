@@ -3,26 +3,27 @@
 {% load embed_video_tags %}
 {% block content %}
 
-<div class='project-container1'>
-    <!--<div class="card project-card" style="width: 800px;">-->
-    <div class='project-comment'>
-        <div class="card project-card" >
-            <!--<img src="..." class="card-img-top" alt="...">-->
-            <div class="card-body project-card-body">
-                <h2>{{ project.title }}</h2>
-                <h5>{{ project.student.first_name }} {{ project.student.last_name }}</h5>
-                {% if project.student == user %}
-                    <a class="btn btn-outline-primary" href="{% url 'update-project' project.pk %}">Edit</a>
-                    <a class="btn btn-outline-success" href= "{% url 'add-photo' project.pk %}">Change project picture</a>
-                    <a class="btn btn-outline-warning" href= "{% url 'add-video' project.pk %}">Add video</a>
-                    <!--<a class="btn btn-outline-info" href=  url 'add-gallery' project.pk %}">Add photos to gallery</a>-->
-                    <a class="btn btn-outline-danger" href="{% url 'delete-project' project.pk %}">Delete</a>
-                    <br><br>
-                {% endif %}
-                <div class='project-card-description'>
-                    <p>{{ project.description }}</p>
-                </div>
-                {% if project.student != user %}
+<div class="card project-card" >
+    <div class='project-container1'>
+        <!--<div class="card project-card" style="width: 800px;">-->
+        <div class='project-comment'>
+            <div class="card project-card2" >
+                <!--<img src="..." class="card-img-top" alt="...">-->
+                <div class="card-body project-card-body">
+                    <h2>{{ project.title }}</h2>
+                    <h5>{{ project.student.first_name }} {{ project.student.last_name }}</h5>
+                    {% if project.student == user %}
+                        <a class="btn btn-outline-primary" href="{% url 'update-project' project.pk %}">Edit</a>
+                        <a class="btn btn-outline-success" href= "{% url 'add-photo' project.pk %}">Change project picture</a>
+                        <a class="btn btn-outline-warning" href= "{% url 'add-video' project.pk %}">Add video</a>
+                        <!--<a class="btn btn-outline-info" href=  url 'add-gallery' project.pk %}">Add photos to gallery</a>-->
+                        <a class="btn btn-outline-danger" href="{% url 'delete-project' project.pk %}">Delete</a>
+                        <br><br>
+                    {% endif %}
+                    <div class='project-card-description'>
+                        <p>{{ project.description }}</p>
+                    </div>
+                    {% if project.student == user %}
                     <form method="POST">
                         {% csrf_token %}
                         <input type='hidden' name='post_id' value="{{ project.id }}">
@@ -32,55 +33,57 @@
                                 <button class="likebutton btn btn-outline-success likebutton" type='submit' name='likebutton'>I voted!</button>
                             {% endif %}
                     </form>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
-        {% if not comments %}
-            <br><br>
-            <h3>No comments yet...</h3>
-            <!--<a href=url 'add-comment' project.pk >Add Comment</a>-->
-        {% else %}
-            <br><br>
-            <h3>Comments</h3>
-            {% for comment in comments %}
-                <b>{{ comment.author.first_name }} {{ comment.author.last_name }}</b>
-                <p>{{ comment.content }}</p>
-            {% endfor %}
-            <!--<a href= url 'add-comment' project.pk >Add Comment</a>-->
-        {% endif %}
-        <br>
-        {% if project.student != user %}
-            <h3>Add comment</h3>
-            <div class='register-login-profile-form'>
-                <form method="POST" class='comment-form'>
-                    <fieldset class="form-group">
-                        {% csrf_token %} 
-                        {{ comment_form|crispy }}
-                    </fieldset>
-                    <br>
-                    <div class='form-group'>
-                        <button class="btn btn-outline-success comment-button" type='submit' name='commentbutton'>Add comment</button>
-                    </div>
-                </form>
-            </div>
-        {% endif %}
-    </div>
-    <div class='project-container2'>
-        <div class='photo-gallery'>
-            {% if project.photo %}
-                <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
-            {% endif %}
-        </div>
-        <!--video containers and div-->
-        <div class='video-container'>
-            <div class='video-div'>
-                <!--<h3>Video upload coming soon!</h3>-->
-                {% if project.video %}
-                    {% video project.video '400x300' %}
+        <div class='project-container2'>
+            <div class='photo-gallery'>
+                {% if project.photo %}
+                    <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
                 {% endif %}
+            </div>
+            <!--video containers and div-->
+            <div class='video-container'>
+                <div class='video-div'>
+                    <!--<h3>Video upload coming soon!</h3>-->
+                    {% if project.video %}
+                        {% video project.video '400x300' %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+{% if not comments %}
+<br><br>
+<h3>No comments yet...</h3>
+<!--<a href=url 'add-comment' project.pk >Add Comment</a>-->
+{% else %}
+<br><br>
+<h3>Comments</h3>
+{% for comment in comments %}
+    <b>{{ comment.author.first_name }} {{ comment.author.last_name }}</b>
+    <p>{{ comment.content }}</p>
+{% endfor %}
+<!--<a href= url 'add-comment' project.pk >Add Comment</a>-->
+{% endif %}
+<br>
+{% if project.student != user %}
+<h3>Add comment</h3>
+<div class='register-login-profile-form'>
+    <form method="POST" class='comment-form'>
+        <fieldset class="form-group">
+            {% csrf_token %} 
+            {{ comment_form|crispy }}
+        </fieldset>
+        <br>
+        <div class='form-group'>
+            <button class="btn btn-outline-success comment-button" type='submit' name='commentbutton'>Add comment</button>
+        </div>
+    </form>
+</div>
+{% endif %}
 
 {% endblock %}
