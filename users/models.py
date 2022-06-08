@@ -62,12 +62,11 @@ class Like(models.Model):
     def __str__(self):
         return f'{self.project}'
 
-'''
+
 class GalleryPhoto(models.Model):
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     photo = models.ImageField(default=None,blank=True,upload_to='gallery_pics')
-    #description = models.CharField(max_length=100,default=None,blank=True)
+    description = models.CharField(max_length=100,default=None,blank=True)
 
     def __str__(self):
         return f'{self.project}'
-'''
