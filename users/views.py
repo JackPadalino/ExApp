@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView,UpdateView,DeleteView
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,ProjectVideoForm,ProjectPhotoForm#,GalleryPhotoForm
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,ProjectVideoForm,ProjectPhotoForm,GalleryPhotoForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like
@@ -322,21 +322,22 @@ def AddVideoView(request,pk):
 
 
 
-'''
+
 @login_required
 def AddGalleryView(request,pk):
     project = get_object_or_404(Project,pk=pk)
     if request.method == 'POST':
-        form = GalleryPhotoForm(request.POST,request.FILES, instance=project)
+        form = GalleryPhotoForm(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
+            photo = form.save(commit=False)
+            photo.project = project
+            photo.save()
             return redirect('project-details',pk=project.pk)
     else:
-        form = GalleryPhotoForm(instance=project)
+        form = GalleryPhotoForm()
     context = {
         'title':'Add Gallery Photos',
         'form':form,
         'project':project
     }
     return render(request,'users/add_gallery.html',context)
-'''
