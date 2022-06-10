@@ -159,7 +159,7 @@ def ProjectDetailView(request,pk):
         'gallery_photos':gallery_photos
     }
 
-    return render(request, 'users/project_detail2.html', context)
+    return render(request, 'users/project_detail3.html', context)
 
 
 
