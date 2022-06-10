@@ -45,6 +45,8 @@ body{
 
 .project-card{
   box-shadow: 7px 7px 10px rgb(75, 75, 75);
+  margin-right:20px;
+  margin-bottom:20px;
 }
 
 .project-card-title{
@@ -101,8 +103,8 @@ body{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
-  row-gap:20px;
-  column-gap:20px;
+  /*row-gap:20px;*/
+  /*column-gap:20px;*/
 }
 
 /*~~~~~CSS for project details page~~~~~*/
