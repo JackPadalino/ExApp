@@ -20,23 +20,31 @@
         <div class='project-card-description'>
             <p>{{ project.description }}</p>
         </div>
-        {% if project.photo %}
-            <div class='project-card-picture'>
-                <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
-            </div>
-        {% endif %}
+        <div class='project-card-picture'>
+            {% if project.photo %}
+                <div class='project-card-picture-innerdiv'>
+                    <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
+                </div>
+            {% endif %}
+        </div>
     </div>
     <div class='project-container2'>
+        {% if project.video %}
+            <div class='video-div'>
+                <!--<h3>Video upload coming soon!</h3>-->
+                {% video project.video '300x300' %}
+            </div>
+        {% endif %}
         {% if gallery_photos %}
-            {% for photo in gallery_photos %}
+            {% for galleryphoto in gallery_photos %}
                 <div class='galleryphoto-div'>
-                    <image style='height:100px;width:100px;' src="{{ photo.url }}"></image>
+                    <image style='height:300px;width:300px;' src="{{ galleryphoto.photo.url }}"></image>
                 </div>
             {% endfor %}
         {% endif %}
     </div>
     <div class='project-container3'>
-        {% if project.student == user %}
+        {% if project.student != user %}
         <form method="POST">
             {% csrf_token %}
             <input type='hidden' name='post_id' value="{{ project.id }}">
