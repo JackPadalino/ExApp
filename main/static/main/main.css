@@ -103,6 +103,7 @@ body{
   justify-content:center;
   row-gap:20px;
   column-gap:20px;
+  align-items: center;
 }
 
 /*~~~~~CSS for project details1 page~~~~~*/
