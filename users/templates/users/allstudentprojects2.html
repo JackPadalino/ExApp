@@ -5,7 +5,7 @@
         <h1>All EXAP Projects</h1>
     </div>
 {% if user.is_authenticated %}
-    <div class="container" data-masonry='{ "itemSelector": ".project-card"}'>
+    <div class="grid" data-masonry='{ "itemSelector": ".project-card"}'>
     <!--<div class="container">-->
         {% for project in projects %}
             <div class="card project-card" style="width: 19rem;">
