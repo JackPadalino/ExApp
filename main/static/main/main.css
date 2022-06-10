@@ -97,13 +97,13 @@ body{
 }
 
 /*~~~~~CSS for all class project pages~~~~~*/
-.container{
+/*.container{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   row-gap:20px;
   column-gap:20px;
-  align-items: center;
+  align-items: center;*/
 }
 
 /*~~~~~CSS for project details1 page~~~~~*/
