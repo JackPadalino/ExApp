@@ -157,3 +157,23 @@ body{
   column-gap:10px;
   row-gap:10px;
 }
+
+
+
+
+
+
+.project-card2{
+  width: 314px; /*1 rem = 16px*/
+  padding:10px;
+  height:auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px grey;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  /*float:left;*/
+  /*height:fit-content;*/
+  /*overflow: auto;*/
+  /*overflow:hidden;*/
+}

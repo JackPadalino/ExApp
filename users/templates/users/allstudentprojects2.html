@@ -5,21 +5,21 @@
         <h1>All EXAP Projects</h1>
     </div>
 {% if user.is_authenticated %}
-    <div class="grid" data-masonry='{ "itemSelector": ".project-card"}'>
+    <div class="project-grid" data-masonry='{ "itemSelector": ".project-card2"}'>
     <!--<div class="container">-->
         {% for project in projects %}
-            <div class="card project-card" style="width: 19rem;">
+            <div class="project-card2">
                 <!--<img src="..." class="card-img-top" alt="...">-->
-                <div class='project-card-image'>
+                <div class='project-card-image2'>
                     {% if project.photo %}
                         <image style='height:100%;width:100%;' src="{{ project.photo.url }}">
                     {% endif %}
                 </div>
-                <div class="card-body project-card-body">
+                <div class="project-card-body2">
                     <h5><a class="article-title" href="{% url 'project-details' project.pk %}">{{ project.title }}</a></h5>
-                    <h8 class="card-title project-card-student">{{ project.student.first_name }} {{ project.student.last_name }}</h8>
-                    <div class='project-card-blurb'>
-                        <p class="card-text project-card-text">{{ project.blurb }}</p>
+                    <h8 class="card-title2">{{ project.student.first_name }} {{ project.student.last_name }}</h8>
+                    <div class='project-card-blurb2'>
+                        <p class="project-card-text2">{{ project.blurb }}</p>
                     </div>
                     <br>
                     <small><b>{{ project.liked.all.count }}</b> votes <b>{{ project.comments.all.count }}</b> comments</small>

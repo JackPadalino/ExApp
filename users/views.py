@@ -56,7 +56,7 @@ def login(request):
 # list projects view
 class AllProjectListView(ListView):
     model = Project
-    template_name = 'users/allstudentprojects.html'
+    template_name = 'users/allstudentprojects2.html'
     context_object_name = 'projects'
 
 
