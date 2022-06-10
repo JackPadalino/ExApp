@@ -27,32 +27,26 @@
         {% endif %}
     </div>
     <div class='project-container2'>
-
-
-    </div>
-
-        <!--<div class="card project-card" style="width: 800px;">-->
-        <div class='project-comment'>
-            <div class="card project-card2" >
-                <!--<img src="..." class="card-img-top" alt="...">-->
-                <div class="card-body project-card-body">
-
-
-                    {% if project.student != user %}
-                    <form method="POST">
-                        {% csrf_token %}
-                        <input type='hidden' name='post_id' value="{{ project.id }}">
-                            {% if user not in project.liked.all %}
-                                <button class="likebutton btn btn-outline-info" type='submit' name='likebutton'>Vote</button>
-                            {% else %}
-                                <button class="likebutton btn btn-outline-success likebutton" type='submit' name='likebutton'>I voted!</button>
-                            {% endif %}
-                    </form>
-                    {% endif %}
+        {% if gallery_photos %}
+            {% for photo in gallery_photos %}
+                <div class='galleryphoto-div'>
+                    <image style='height:100px;width:100px;' src="{{ photo.url }}"></image>
                 </div>
-            </div>
-        </div>
-
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class='project-container3'>
+        {% if project.student == user %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type='hidden' name='post_id' value="{{ project.id }}">
+                {% if user not in project.liked.all %}
+                    <button class="likebutton btn btn-outline-info" type='submit' name='likebutton'>Vote</button>
+                {% else %}
+                    <button class="likebutton btn btn-outline-success likebutton" type='submit' name='likebutton'>I voted!</button>
+                {% endif %}
+        </form>
+        {% endif %}
     </div>
 </div>
 

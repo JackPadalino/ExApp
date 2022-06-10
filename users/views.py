@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView,UpdateView,Del
 from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm,ProjectVideoForm,ProjectPhotoForm,GalleryPhotoForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-from .models import Project,Comment,Like
+from .models import Project,Comment,Like,GalleryPhoto
 import re
 import os
 
@@ -125,10 +125,7 @@ def ProjectDetailView(request,pk):
     user = request.user
     project = Project.objects.get(id=pk)
     comments = Comment.objects.filter(project=project)
-    #try:
-    #    video = ProjectVideo.objects.get(project=project)
-    #except:
-    #    video = None
+    gallery_photos = GalleryPhoto.objects.all().filter(project=project)
     comment_form = CommentForm()
     if request.method == 'POST':
         if 'commentbutton' in request.POST:
@@ -159,10 +156,10 @@ def ProjectDetailView(request,pk):
         'project': project,
         'comments':comments,
         'comment_form':comment_form,
-        #'video':video
+        'gallery_photos':gallery_photos
     }
 
-    return render(request, 'users/project_detail2.html', context)
+    return render(request, 'users/project_detail.html', context)
 
 
 
