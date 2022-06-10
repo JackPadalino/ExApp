@@ -1,11 +1,12 @@
 {% extends 'main/base.html' %}
 {% block content %}
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <!--<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>-->
     <div class='page-title'>
         <h1>All EXAP Projects</h1>
     </div>
 {% if user.is_authenticated %}
-    <div class="container" data-masonry='{ "itemSelector": ".project-card"}'>
+    <!--<div class="container" data-masonry='{ "itemSelector": ".project-card"}'>-->
+    <div class="container"></div>
         {% for project in projects %}
             <div class="card project-card" style="width: 19rem;">
                 <!--<img src="..." class="card-img-top" alt="...">-->
