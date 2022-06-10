@@ -164,7 +164,7 @@ body{
 
 
 .project-card2{
-  width: 314px; /*1 rem = 16px*/
+  width: 315px; /*1 rem = 16px*/
   padding:10px;
   height:auto;
   margin-right: 10px;
@@ -176,4 +176,9 @@ body{
   /*height:fit-content;*/
   /*overflow: auto;*/
   /*overflow:hidden;*/
+}
+
+
+.project-card-body2{
+  width:315;
 }
