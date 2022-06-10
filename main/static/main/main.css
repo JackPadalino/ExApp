@@ -43,15 +43,16 @@ body{
   border: none;
 }
 
-.project-card{
+/*.project-card{
   box-shadow: 7px 7px 10px rgb(75, 75, 75);
-  /*margin-right:20px;
-  margin-bottom:20px;*/
+  padding:20px;
+  margin-right:20px;
+  margin-bottom:20px;
 }
 
 .project-card-title{
   color: #73b2bb;
-}
+}*/
 
 .project-card-blurb{
   margin-top:5px;
@@ -59,10 +60,10 @@ body{
   border-top: 1px solid grey;
 }
 
-.project-card-description{
+/*.project-card-description{
   border-top: 1px solid grey;
   white-space: pre-line;
-}
+}*/
 
 /*~~~~~CSS for register,login, and profile forms~~~~~*/
 .register-login-profile-form{
@@ -107,8 +108,8 @@ body{
   column-gap:20px;
 }
 
-/*~~~~~CSS for project details page~~~~~*/
-.project-container1{
+/*~~~~~CSS for project details1 page~~~~~*/
+/*.project-container1{
   display:flex;
   flex-direction:row;
 }
@@ -117,10 +118,10 @@ body{
   display:flex;
   flex-direction:column;
   width:40%;
-  padding-top:20px; /*remove this if switching back to project_detail.html*/
+  padding-top:20px;
   padding-bottom:30px;
 
-}
+}*/
 
 .project-comment{
   width:60%;
@@ -132,14 +133,14 @@ body{
   justify-content:center;
 }
 
-.video-div{
+/*.video-div{
   display:flex;
   justify-content:center;
   align-items:top;
   height:300px;
   padding-left:30px;
   padding-right:30px;
-}
+}*/
 
 .photo-gallery{
   display:flex;
@@ -148,4 +149,48 @@ body{
   padding-left:30px;
   padding-right:30px;
   padding-bottom:30px;
+}
+
+/*~~~~~CSS for project-detail3 page~~~~~*/
+
+.project-container1{
+  display:flex;
+  flex-direction:row;
+}
+
+.project-card{
+  box-shadow: 7px 7px 10px rgb(75, 75, 75);
+  padding:20px;
+  /*margin-right:20px;
+  margin-bottom:20px;*/
+}
+
+.project-card-title{
+  color: #73b2bb;
+}
+
+.project-card-description{
+  border-top: 1px solid grey;
+  white-space: pre-line;
+  width:60%;
+  /*background-color:red;*/
+}
+
+.project-card-picture{
+  width:40%;
+  /*background-color:green;*/
+  text-align:center;
+}
+
+.project-container2{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  column-gap:10px;
+  row-gap:10px;
+  /*background-color:blue;*/
+}
+
+.project-container3{
+  margin-top:20px;
 }
