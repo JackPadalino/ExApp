@@ -9,7 +9,6 @@ from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Project,Comment,Like,GalleryPhoto
-from guest_user.decorators import allow_guest_user
 import re
 import os
 
