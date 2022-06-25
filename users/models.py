@@ -20,7 +20,6 @@ periods = (
 
 class Project(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
-    school_year = models.IntegerField(default=2022)
     period = models.IntegerField(choices=periods,default=1)
     liked = models.ManyToManyField(User,default=None,blank=True,related_name='likes')
     title = models.CharField(max_length=50,default='My EXAP project')
