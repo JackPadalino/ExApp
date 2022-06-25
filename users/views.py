@@ -65,6 +65,19 @@ class AllProjectListView(LoginRequiredMixin,ListView):
 
 
 # list projects view
+class Projects2022ListView(LoginRequiredMixin,ListView):
+    model = Project
+    template_name = 'users/allstudentprojects.html'
+    context_object_name = 'projects'
+    
+    def get_queryset(self):
+        projects = Project.objects.filter(school_year=2022)
+        return projects
+
+
+
+
+# list projects view
 class FirstPeriodProjectListView(LoginRequiredMixin,ListView):
     model = Project
     template_name = 'users/firstperiodprojects.html'
